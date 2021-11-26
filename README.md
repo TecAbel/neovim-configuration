@@ -1,2 +1,82 @@
 # neovim-configuration
 neo vim init.vim
+
+to use in 
+vim/
+  - plugged
+  - init.vim *
+
+syntax on
+set number
+set mouse=a
+set sw=2
+set expandtab
+set smartindent
+set numberwidth=1
+set ignorecase
+set clipboard=unnamedplus
+
+
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+call plug#begin()
+" for better colors
+Plug 'sheerun/vim-polyglot'
+"  typescript 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'navarasu/onedark.nvim'
+" for theme
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" file explorer choco install ag
+Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
+" closetag
+Plug 'alvan/vim-closetag'
+"files choco install fzf and ag
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" init.vim
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+call plug#end()
+
+" set theme
+colorscheme onedark
+set laststatus=2
+"set keymap to nerdtree
+nnoremap <S-n> :NERDTreeToggle<CR>
+nnoremap <C-N> :Files<CR>
+nnoremap <C-f> :Ag<CR>
+nnoremap <C-h> :History<CR>
+
+nnoremap <C-O> :Prettier<CR>
+nnoremap <space>w :w<CR>
+nnoremap <space>q :q<CR>
+"quick semi
+nnoremap <Leader>; $a;<Esc>
+"for definitions
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+" - To learn more about preview window options, see `--preview-window` section of `man fzf`.
+
+
+
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
+
+
+
+
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
