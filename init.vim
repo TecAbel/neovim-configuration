@@ -34,14 +34,21 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
-
-
+" easymotion
+Plug 'easymotion/vim-easymotion'
+" navigation tabs
+Plug 'christoomey/vim-tmux-navigator'
+"
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
+" coc config
+" Add `:OR` command for organize imports of the current buffer.
 
+
+let mapleader=" "
 " set theme
 colorscheme onedark
 set laststatus=2
@@ -49,26 +56,30 @@ set laststatus=2
 nnoremap <S-n> :NERDTreeToggle<CR>
 nnoremap <C-N> :Files<CR>
 nnoremap <C-f> :Ag<CR>
-nnoremap <C-h> :History<CR>
+nnoremap <C-n> :History<CR>
 
-nnoremap <C-O> :Prettier<CR>
+" nnoremap <C-O> :Prettier<CR>
 nnoremap <space>w :w<CR>
 nnoremap <space>q :q<CR>
 "quick semi
-nnoremap <Leader>; $a;<Esc>
+nnoremap <space>; $a;<Esc>
 "for definitions
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
-
+nmap <Leader>s <Plug>(easymotion-s2)
 
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 
-
+:set number relativenumber
+:set nu rnu
+:set guifont=Comic\ Mono:h15
 
 
 
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
