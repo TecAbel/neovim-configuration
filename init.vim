@@ -134,6 +134,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " typescript suppport
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
+" Multi cursor
+
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
@@ -157,10 +160,10 @@ nnoremap <C-f> :Ag<CR>
 nnoremap <C-n> :History<CR>
 
 " nnoremap <C-O> :Prettier<CR>
-nnoremap <space>w :w<CR>
-nnoremap <space>q :q<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 "quick semi
-nnoremap <space>; $a;<Esc>
+nnoremap <Leader>; $a;<Esc>
 "for definitions
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -184,4 +187,6 @@ command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
-
+" muticursors 
+let g:VM_maps = {}
+let g:VM_maps['Find Under'] = '<Leader>e'
