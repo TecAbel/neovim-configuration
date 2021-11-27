@@ -86,7 +86,7 @@ nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
 
 
 
-================ for mac
+================ for mac use hyper
 syntax on
 set number
 set mouse=a
@@ -111,7 +111,10 @@ call plug#begin()
 Plug 'sheerun/vim-polyglot'
 "  typescript 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
+Plug 'navarasu/onedark.nvim'
+" for theme
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " file explorer choco install ag
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
@@ -143,7 +146,7 @@ call plug#end()
 
 let mapleader=" "
 " set theme
-colorscheme gruvbox 
+colorscheme onedark 
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
