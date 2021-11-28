@@ -21,6 +21,7 @@ call plug#begin()
 " for better colors
 Plug 'sheerun/vim-polyglot'
 "  typescript 
+"  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'navarasu/onedark.nvim'
 " for theme
@@ -105,6 +106,10 @@ nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
 let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
 let g:VM_maps['Find Under'] = '<Leader>j'
+
+" for css autocomplete and scss before use :CocInstall coc-css
+autocmd FileType scss setl iskeyword+=@-@
+
 
 
 
