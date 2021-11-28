@@ -21,7 +21,7 @@ call plug#begin()
 " for better colors
 Plug 'sheerun/vim-polyglot'
 "  typescript 
-"  :CocInstall coc-tsserver :CocInstall coc-css
+"  :CocInstall coc-tsserver :CocInstall coc-css :CocInstall coc-angular :CocInstall coc-html
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'navarasu/onedark.nvim'
 " for theme
