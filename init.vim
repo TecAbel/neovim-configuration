@@ -24,7 +24,7 @@ Plug 'mattn/emmet-vim'
 " for better colors
 Plug 'sheerun/vim-polyglot'
 "  typescript 
-"  :CocInstall coc-tsserver :CocInstall coc-css
+"  :CocInstall coc-tsserver coc-css coc-angular coc-html-css-support coc-html coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'navarasu/onedark.nvim'
 
