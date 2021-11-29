@@ -18,16 +18,17 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 
 call plug#begin()
+" for html and css snipets  control + y and  ,
+Plug 'mattn/emmet-vim'
+
 " for better colors
 Plug 'sheerun/vim-polyglot'
 "  typescript 
-"  :CocInstall coc-tsserver :CocInstall coc-css :CocInstall coc-angular :CocInstall coc-html
+"  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'navarasu/onedark.nvim'
-" for theme
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" file explorer choco install ag
+
+"file explorer choco install ag
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
@@ -54,9 +55,15 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+" status line
+ Plug 'itchyny/lightline.vim'
+ Plug 'itchyny/vim-gitbranch'
+
+"
 call plug#end()
 " coc config
-" Add `:OR` command for organize imports of the current buffer.
+" Use <c-space> to trigger completion.
+nnoremap <silent><expr> <c-space> coc#refresh()
 
 
 let mapleader=" "
@@ -109,6 +116,19 @@ let g:VM_maps['Find Under'] = '<Leader>j'
 
 " for css autocomplete and scss before use :CocInstall coc-css
 autocmd FileType scss setl iskeyword+=@-@
+" status bar
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
+
+"
+
 
 
 
@@ -193,7 +213,7 @@ call plug#end()
 
 let mapleader=" "
 " set theme
-colorscheme onedark 
+colorscheme gruvbox 
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
