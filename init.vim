@@ -1,34 +1,3 @@
-syntax on
-set number
-set mouse=a
-set sw=2
-set expandtab
-set smartindent
-set numberwidth=1
-set ignorecase
-set clipboard=unnamedplus
-" unicode characters in the file autoload/float.vim
-set encoding=utf-8
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-
-call plug#begin()
-" for html and css snipets  control + y and  ,
-Plug 'mattn/emmet-vim'
-
-" for better colors
-Plug 'sheerun/vim-polyglot'
-"  typescript 
-"  :CocInstall coc-tsserver coc-css coc-angular coc-html-css-support coc-html coc-css
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'navarasu/onedark.nvim'
-
-"file explorer choco install ag
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
@@ -62,24 +31,24 @@ Plug 'prettier/vim-prettier', {
 "
 call plug#end()
 " coc config
-" Use <c-space> to trigger completion.
-nnoremap <silent><expr> <c-space> coc#refresh()
+colorscheme monokai
 
 
 let mapleader=" "
 " set theme
-colorscheme onedark 
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
 "set keymap to nerdtree
 nnoremap <S-n> :NERDTreeToggle<CR>
 nnoremap <Leader>n :Files<CR>
-nnoremap <C-f> :Ag<CR>
+nnoremap <Leader>F :Ag<CR>
 nnoremap <C-n> :History<CR>
 :let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
 nmap <Leader>t :tabnew<CR>
+
+
 
 " nnoremap <C-O> :Prettier<CR>
 nnoremap <Leader>w :w<CR>
@@ -127,7 +96,11 @@ let g:lightline = {
       \ },
       \ }
 
-"
+let NERDTreeDirArrowExpandable = "▶"
+let NERDTreeDirArrowCollapsible = "▼"
+"  Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
 
 
 
