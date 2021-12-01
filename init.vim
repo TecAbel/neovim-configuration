@@ -85,9 +85,8 @@ nnoremap <C-n> :History<CR>
 :let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
 nmap <Leader>t :tabnew<CR>
-
-"  Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <C-k> coc#refresh()
 
 " nnoremap <C-O> :Prettier<CR>
 nnoremap <Leader>w :w<CR>
