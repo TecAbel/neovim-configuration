@@ -6,6 +6,7 @@ set expandtab
 set smartindent
 set numberwidth=1
 set ignorecase
+set nohlsearch
 set clipboard=unnamedplus
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -20,23 +21,34 @@ set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
+set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 call plug#begin()
-" for html and css snipets  control + y and  ,
-Plug 'mattn/emmet-vim'
+"for commentary
+" gcc one line normal mode
+" visual mode gb 
+" to solect block V %
+
+Plug 'numToStr/Comment.nvim'
 
 " for better colors
 Plug 'sheerun/vim-polyglot'
-Plug 'tanvirtin/monokai.nvim'
+Plug 'crusoexia/vim-monokai'
+
 "  typescript 
 "  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "file explorer choco install ag
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'scrooloose/nerdtree-project-plugin'
+"utils
 Plug 'jiangmiao/auto-pairs'
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 " closetag
@@ -69,7 +81,13 @@ Plug 'prettier/vim-prettier', {
 "
 call plug#end()
 " coc config
-colorscheme monokai_pro
+colorscheme monokai
+
+" Start NERDTree and leave the cursor in it.
+autocmd VimEnter * NERDTree
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
@@ -89,6 +107,7 @@ nmap <Leader>t :tabnew<CR>
 inoremap <silent><expr> <C-k> coc#refresh()
 
 " nnoremap <C-O> :Prettier<CR>
+nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 "quick semi
@@ -115,7 +134,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
 " muticursors 
 let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
@@ -137,3 +155,7 @@ let g:lightline = {
 let NERDTreeDirArrowExpandable = "▶"
 let NERDTreeDirArrowCollapsible = "▼"
 
+
+" Somewhere after plug#end()
+lua require('Comment').setup()
+let g:nerdtree_vis_confirm_open = 0
