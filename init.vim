@@ -141,6 +141,7 @@ let g:VM_maps['Find Under'] = '<Leader>j'
 
 " for css autocomplete and scss before use :CocInstall coc-css
 autocmd FileType scss setl iskeyword+=@-@
+set iskeyword+=-
 " status bar
 let g:lightline = {
       \ 'active': {
