@@ -90,6 +90,10 @@ autocmd VimEnter * NERDTree
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
+" for better navigation
+nnoremap <C-j> 10j
+nnoremap <C-k> 10k
+
 let mapleader=" "
 " set theme
 set bg=dark
