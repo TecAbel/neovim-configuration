@@ -140,6 +140,7 @@ let g:VM_maps = {}
 let g:VM_maps['Find Under'] = '<Leader>j'
 
 " for css autocomplete and scss before use :CocInstall coc-css
+autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 autocmd FileType scss setl iskeyword+=@-@
 set iskeyword+=-
 " status bar
