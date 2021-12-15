@@ -21,3 +21,6 @@ optional but recommended
    to run 
  - if using windows change it in windows terminal preferences, profile, command promt, appereance, text, save
   - :PlugInstall
+
+# for Webstorm
+ - use emulation (https://github.com/JetBrains/ideavim)
