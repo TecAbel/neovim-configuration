@@ -25,10 +25,18 @@ set ideastatusicon=gray
 set idearefactormode=keep
 
 """ Mappings --------------------------------
+map <leader>q :q<CR>
 map <leader>w :w<CR>
 map <Leader>s <Plug>(easymotion-s2)
 map <leader>n :NERDTreeToggle<CR>
 map <leader>gf <Action>(GotoFile)
+
+"" tmux nav ----------------------------------
+
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
 
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(RenameElement)
