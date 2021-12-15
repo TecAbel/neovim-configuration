@@ -24,3 +24,4 @@ optional but recommended
 
 # for Webstorm
  - use emulation (https://github.com/JetBrains/ideavim)
+ - Install easymotion plugin and dependences 
