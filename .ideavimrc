@@ -27,16 +27,25 @@ set idearefactormode=keep
 """ Mappings --------------------------------
 map <leader>q :q<CR>
 map <leader>w :w<CR>
-map <Leader>s <Plug>(easymotion-s2)
+map <leader>sm <Plug>(easymotion-s2)
 map <leader>n :NERDTreeToggle<CR>
+map <leader>nf :NERDTreeFind<CR>
 map <leader>gf <Action>(GotoFile)
 
 "" tmux nav ----------------------------------
+map <leader>j 10j
+map <leader>k 10k
 
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <C-j> <C-W>j
 map <C-k> <C-W>k
+
+
+
+"" --------------------------------------------
+
+let NERDTreeQuitOnOpen=1
 
 map <leader>d <Action>(Debug)
 map <leader>r <Action>(RenameElement)
@@ -50,3 +59,4 @@ map <S-Space> <Action>(GotoNextError)
 
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>o <Action>(FileStructurePopup)
+
