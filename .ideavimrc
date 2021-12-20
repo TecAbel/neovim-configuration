@@ -28,7 +28,8 @@ set idearefactormode=keep
 map <leader>q :q<CR>
 map <leader>w :w<CR>
 map <leader>sm <Plug>(easymotion-s2)
-map <leader>n :NERDTreeToggle<CR>
+map <leader>nt :NERDTreeToggle<CR>
+map <leader>nn :NERDTree<CR>
 map <leader>nf :NERDTreeFind<CR>
 map <leader>gf <Action>(GotoFile)
 
@@ -59,4 +60,3 @@ map <S-Space> <Action>(GotoNextError)
 
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>o <Action>(FileStructurePopup)
-
