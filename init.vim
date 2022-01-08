@@ -7,6 +7,7 @@ set smartindent
 set numberwidth=1
 set ignorecase
 set nohlsearch
+set nocompatible
 set clipboard=unnamedplus
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -22,6 +23,10 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+
+" for better navigation
+nnoremap <C-j> 10j
+nnoremap <C-k> 10k
 
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -50,13 +55,13 @@ Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'scrooloose/nerdtree-project-plugin'
 "utils
 Plug 'jiangmiao/auto-pairs'
-Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 " closetag
 Plug 'alvan/vim-closetag'
 "files choco install fzf and ag
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
 " easymotion
@@ -77,9 +82,45 @@ Plug 'prettier/vim-prettier', {
 " status line
  Plug 'itchyny/lightline.vim'
  Plug 'itchyny/vim-gitbranch'
-
-"
+ 
+" git line
+ Plug 'mhinz/vim-signify'
 call plug#end()
+" coc config
+colorscheme monokai
+
+" Start NERDTree and leave the cursor in it.
+" autocmd VimEnter * NERDTree
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd VimEnter * call StartUp()
+" for css autocomplete
+autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
+
+"Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+
+let mapleader=" "
+" set theme
+set bg=dark
+let g:gruvbox_contrast_dark='hard'
+set laststatus=2
+" Give more space for displaying messages.
+set cmdheight=2
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+
+
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 " coc config
 colorscheme monokai
 
@@ -90,19 +131,15 @@ autocmd VimEnter * NERDTree
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
-" for better navigation
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
-
 let mapleader=" "
 " set theme
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
 "set keymap to nerdtree
-nnoremap <S-n> :NERDTreeToggle<CR>
-nnoremap <Leader>n :Files<CR>
-nnoremap <Leader>F :Ag<CR>
+nnoremap <Leader>nn :NERDTreeToggle<CR>
+nnoremap gf :Files<CR>
+nnoremap <Leader>ff :Ag<CR>
 nnoremap <C-n> :History<CR>
 :let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
@@ -121,11 +158,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 
-let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
-let g:coc_global_extensions = ['coc-tsserver']
+let g:fzf_preview_window = ['right:50%', 'ctrl-/'] 
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
 :set number relativenumber
 :set nu rnu
 :set guifont=Comic\ Mono:h15
@@ -162,6 +199,6 @@ let NERDTreeDirArrowExpandable = "▶"
 let NERDTreeDirArrowCollapsible = "▼"
 
 
-" Somewhere after plug#end()
+" Comment.nvim
 lua require('Comment').setup()
 let g:nerdtree_vis_confirm_open = 0
