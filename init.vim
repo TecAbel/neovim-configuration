@@ -44,6 +44,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-monokai'
 
+
 "  typescript 
 "  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -115,7 +116,8 @@ set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+" set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+set termguicolors
 
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -143,13 +145,16 @@ nnoremap <Leader>ff :Ag<CR>
 nnoremap <C-n> :History<CR>
 :let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 nmap <Leader>t :tabnew<CR>
+nmap <Leader>s :vsplit<CR>
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-k> coc#refresh()
 
 " nnoremap <C-O> :Prettier<CR>
 nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
 nnoremap <Leader>w :w<CR>
+
 nnoremap <Leader>q :q<CR>
 "quick semi
 nnoremap <Leader>; $a;<Esc>
