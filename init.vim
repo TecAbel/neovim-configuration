@@ -169,7 +169,7 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet', 'coc-html-css-support']
 :set number relativenumber
 :set nu rnu
 :set guifont=Comic\ Mono:h15
