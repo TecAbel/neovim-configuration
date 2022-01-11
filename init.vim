@@ -10,7 +10,7 @@ set nohlsearch
 set nocompatible
 set clipboard=unnamedplus
 " unicode characters in the file autoload/float.vim
-set encoding=utf-8
+set encoding=UTF-8
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -44,7 +44,6 @@ Plug 'numToStr/Comment.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-monokai'
 
-
 "  typescript 
 "  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -73,6 +72,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 " Multi cursor
+Plug 'tpope/vim-surround'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
@@ -86,19 +86,21 @@ Plug 'prettier/vim-prettier', {
  
 " git line
  Plug 'mhinz/vim-signify'
+" for project open
+Plug 'mhinz/vim-startify'
 call plug#end()
 " coc config
 colorscheme monokai
 
 " Start NERDTree and leave the cursor in it.
 " autocmd VimEnter * NERDTree
-function! StartUp()
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
+" function! StartUp()
+"     if 0 == argc()
+"         NERDTree
+"     end
+" endfunction
 
-autocmd VimEnter * call StartUp()
+" autocmd VimEnter * call StartUp()
 " for css autocomplete
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
@@ -127,10 +129,10 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 colorscheme monokai
 
 " Start NERDTree and leave the cursor in it.
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
@@ -166,7 +168,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 
-let g:fzf_preview_window = ['right:50%', 'ctrl-/'] 
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
 :set number relativenumber
 :set nu rnu
@@ -207,3 +209,16 @@ let NERDTreeDirArrowCollapsible = "▼"
 " Comment.nvim
 lua require('Comment').setup()
 let g:nerdtree_vis_confirm_open = 0
+
+" for rooter
+" Everything (default)
+let g:rooter_targets = '/,*'
+
+" All files
+let g:rooter_targets = '*'
+
+" YAML files
+let g:rooter_targets = '*.yml,*.yaml'
+
+" Directories and YAML files
+let g:rooter_targets = '/,*.yml,*.yaml'
