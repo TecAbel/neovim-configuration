@@ -52,15 +52,21 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'scrooloose/nerdtree-project-plugin'
+" Plug 'scrooloose/nerdtree-project-plugin'
 "utils
 Plug 'jiangmiao/auto-pairs'
 " closetag
 Plug 'alvan/vim-closetag'
 "files choco install fzf and ag
 
+" finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 Plug 'airblade/vim-rooter'
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -105,7 +111,7 @@ colorscheme monokai
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 "Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
@@ -142,14 +148,19 @@ let g:gruvbox_contrast_dark='hard'
 set laststatus=2
 "set keymap to nerdtree
 nnoremap <Leader>nn :NERDTreeToggle<CR>
-nnoremap gf :Files<CR>
-nnoremap <Leader>ff :Ag<CR>
+" nnoremap gf :Files<CR>
+" nnoremap <Leader>ff :Ag<CR>
 nnoremap <C-n> :History<CR>
+nnoremap gf <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 :let g:NERDTreeWinSize=60
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 nmap <Leader>t :tabnew<CR>
 nmap <Leader>s :vsplit<CR>
+nnoremap tg gT
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-k> coc#refresh()
 
@@ -169,19 +180,19 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet', 'coc-html-css-support']
-:set number relativenumber
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
+" :set number relativenumber
 :set nu rnu
-:set guifont=Comic\ Mono:h15
+:set guifont=Comic\ Mono:h13
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 " muticursors 
 let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
@@ -208,7 +219,7 @@ let NERDTreeDirArrowCollapsible = "▼"
 
 " Comment.nvim
 lua require('Comment').setup()
-let g:nerdtree_vis_confirm_open = 0
+" let g:nerdtree_vis_confirm_open = 0
 
 " for rooter
 " Everything (default)
@@ -222,3 +233,11 @@ let g:rooter_targets = '*.yml,*.yaml'
 
 " Directories and YAML files
 let g:rooter_targets = '/,*.yml,*.yaml'
+
+" telescope
+function! GetNVimVersion()
+    redir => s
+    silent! version
+    redir END
+    return matchstr(s, 'NVIM v\zs[^\n]*')
+endfunction
