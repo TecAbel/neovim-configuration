@@ -23,6 +23,8 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+set termguicolors
+
 
 " for better navigation
 nnoremap <C-j> 10j
