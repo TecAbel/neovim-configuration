@@ -9,20 +9,13 @@ set ignorecase
 set nohlsearch
 set nocompatible
 set clipboard=unnamedplus
-" unicode characters in the file autoload/float.vim
 set encoding=UTF-8
-
-" TextEdit might fail if hidden is not set.
 set hidden
-" Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-" Give more space for displaying messages.
 set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
 set updatetime=300
-set t_Co=256  " vim-monokai now only support 256 colours in terminal.
+set t_Co=256 
 set termguicolors
 
 
@@ -166,8 +159,7 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
-" :set number relativenumber
-:set nu rnu
+
 :set guifont=Comic\ Mono:h13
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -175,9 +167,7 @@ let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angul
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" command! -bang -nargs=? -complete=dir Files
-"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-" command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 " muticursors 
 let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
