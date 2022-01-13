@@ -118,34 +118,16 @@ autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 let mapleader=" "
 " set theme
-set bg=dark
 let g:gruvbox_contrast_dark='hard'
-set laststatus=2
-" Give more space for displaying messages.
-set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-" set t_Co=256  " vim-monokai now only support 256 colours in terminal.
-set termguicolors
 
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" coc config
-colorscheme monokai
-
-" Start NERDTree and leave the cursor in it.
-" autocmd VimEnter * NERDTree
-
-" Open the existing NERDTree on each new tab.
-" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
 " set theme
-set bg=dark
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
 "set keymap to nerdtree
