@@ -38,6 +38,8 @@ Plug 'numToStr/Comment.nvim'
 " for better colors
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-monokai'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 
 "  typescript 
 "  :CocInstall coc-tsserver :CocInstall coc-css
@@ -89,6 +91,8 @@ Plug 'prettier/vim-prettier', {
  Plug 'mhinz/vim-signify'
 " for project open
 Plug 'mhinz/vim-startify'
+" for html angular template
+Plug 'curist/vim-angular-template'
 call plug#end()
 " coc config
 colorscheme monokai
