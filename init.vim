@@ -93,19 +93,11 @@ Plug 'prettier/vim-prettier', {
 Plug 'mhinz/vim-startify'
 " for html angular template
 Plug 'curist/vim-angular-template'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " coc config
-colorscheme monokai
+colorscheme dracula
 
-" Start NERDTree and leave the cursor in it.
-" autocmd VimEnter * NERDTree
-" function! StartUp()
-"     if 0 == argc()
-"         NERDTree
-"     end
-" endfunction
-
-" autocmd VimEnter * call StartUp()
 " for css autocomplete
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
@@ -130,7 +122,7 @@ set laststatus=2
 "set keymap to nerdtree
 nnoremap <Leader>nn :NERDTreeToggle<CR>
 " nnoremap gf :Files<CR>
-" nnoremap <Leader>ff :Ag<CR>
+nnoremap <Leader>ff :Ag<CR>
 nnoremap <C-n> :History<CR>
 nnoremap gf <cmd>Telescope find_files<cr>
 " nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -146,7 +138,10 @@ nnoremap tg gT
 inoremap <silent><expr> <C-k> coc#refresh()
 
 " nnoremap <C-O> :Prettier<CR>
-nnoremap <Leader>o :OR <CR> \| :Prettier<CR>
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+nnoremap <Leader>o :OR <CR> 
+nnoremap <Leader>p :Prettier<CR>
+nnoremap <Leader>ee :Startify<CR>
 nnoremap <Leader>w :w<CR>
 
 nnoremap <Leader>q :q<CR>
@@ -164,7 +159,7 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
 
-:set guifont=Comic\ Mono:h13
+set guifont=JetBrainsMono_NF:h13
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -192,8 +187,8 @@ let g:lightline = {
       \ },
       \ }
 
-let NERDTreeDirArrowExpandable = "▶"
-let NERDTreeDirArrowCollapsible = "▼"
+let NERDTreeDirArrowExpandable = ""
+let NERDTreeDirArrowCollapsible = ""
 
 
 " Comment.nvim
@@ -220,3 +215,4 @@ function! GetNVimVersion()
     redir END
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
+let g:airline_powerline_fonts = 1
