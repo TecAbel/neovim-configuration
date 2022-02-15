@@ -20,8 +20,8 @@ set termguicolors
 
 
 " for better navigation
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
+" nnoremap <C-j> 10j
+" nnoremap <C-k> 10k
 
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -56,6 +56,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 "files choco install fzf and ag
 
+Plug 'nikvdp/neomux'
 " finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -94,6 +95,7 @@ Plug 'mhinz/vim-startify'
 " for html angular template
 Plug 'curist/vim-angular-template'
 Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 " coc config
 colorscheme dracula
@@ -102,7 +104,7 @@ colorscheme dracula
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 "Open the existing NERDTree on each new tab.
-" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
@@ -123,7 +125,7 @@ set laststatus=2
 nnoremap <Leader>nn :NERDTreeToggle<CR>
 " nnoremap gf :Files<CR>
 nnoremap <Leader>ff :Ag<CR>
-nnoremap <C-n> :History<CR>
+" nnoremap <C-n> :History<CR>
 nnoremap gf <cmd>Telescope find_files<cr>
 " nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -216,3 +218,9 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 let g:airline_powerline_fonts = 1
+"toggle terminal
+"<C-s> - Exit insert mode while in a neomux shell.
+
+
+"
+" #################################################################
