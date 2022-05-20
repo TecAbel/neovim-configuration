@@ -1,0 +1,24 @@
+{
+    "html-css-support.enabledLanguages": [
+        "html",
+        "vue",
+        "blade",
+        "htmldjango",
+        "typescriptreact",
+        "javascriptreact",
+        "typescript"
+    ],
+    "html-css-support.styleSheets": [
+        "/style.css",
+        "style.css",
+        "style.scss",
+        "*.css",
+        "*.scss"
+    ],
+    "coc.preferences.jumpCommand": "tabe",
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.keyMappings": {
+        "<cr>": ["expandable?", "expand", "open"]
+    }
+}
