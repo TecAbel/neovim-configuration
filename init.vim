@@ -15,7 +15,7 @@ set nobackup
 set nowritebackup
 set cmdheight=2
 set updatetime=300
-set t_Co=256 
+set t_Co=256
 set termguicolors
 
 
@@ -39,16 +39,16 @@ Plug 'numToStr/Comment.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-monokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
-
+Plug 'frazrepo/vim-rainbow'
 
 "  typescript 
 "  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "file explorer choco install ag
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'PhilRunninger/nerdtree-visual-selection'
+" Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'PhilRunninger/nerdtree-visual-selection'
 " Plug 'scrooloose/nerdtree-project-plugin'
 "utils
 Plug 'jiangmiao/auto-pairs'
@@ -61,9 +61,7 @@ Plug 'nikvdp/neomux'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 Plug 'airblade/vim-rooter'
 " init.vim
@@ -83,7 +81,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescriptreact', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
  Plug 'itchyny/lightline.vim'
  Plug 'itchyny/vim-gitbranch'
@@ -104,7 +102,7 @@ colorscheme dracula
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 "Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 let mapleader=" "
@@ -122,19 +120,19 @@ let mapleader=" "
 let g:gruvbox_contrast_dark='hard'
 set laststatus=2
 "set keymap to nerdtree
-nnoremap <Leader>nn :NERDTreeToggle<CR>
+" nnoremap <Leader>nn :NERDTreeToggle<CR>
 " nnoremap gf :Files<CR>
 nnoremap <Leader>ff :Ag<CR>
 " nnoremap <C-n> :History<CR>
 nnoremap gf <cmd>Telescope find_files<cr>
-" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-:let g:NERDTreeWinSize=60
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
+" :let g:NERDTreeWinSize=60
+" let NERDTreeShowHidden=1
 nmap <Leader>t :tabnew<CR>
 nmap <Leader>s :vsplit<CR>
+nmap <Leader>i :split<CR>
 nnoremap tg gT
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-k> coc#refresh()
@@ -159,7 +157,7 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-angular', 'coc-emmet']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-html-css-support', 'coc-explorer', 'coc-angular', 'coc-emmet', 'coc-angular', 'coc-lists']
 
 set guifont=JetBrainsMono_NF:h13
 
@@ -189,8 +187,8 @@ let g:lightline = {
       \ },
       \ }
 
-let NERDTreeDirArrowExpandable = ""
-let NERDTreeDirArrowCollapsible = ""
+" let NERDTreeDirArrowExpandable = ""
+" let NERDTreeDirArrowCollapsible = ""
 
 
 " Comment.nvim
@@ -219,8 +217,12 @@ function! GetNVimVersion()
 endfunction
 let g:airline_powerline_fonts = 1
 "toggle terminal
+"<leader>sh
 "<C-s> - Exit insert mode while in a neomux shell.
 
 
 "
 " #################################################################
+" coc-explorer
+:nmap <space><space>e <Cmd>CocCommand explorer<CR>
+
