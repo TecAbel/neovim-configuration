@@ -58,7 +58,6 @@ Plug 'easymotion/vim-easymotion'
 " navigation tabs
 Plug 'christoomey/vim-tmux-navigator'
 " typescript suppport
-Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 " Multi cursor
 Plug 'tpope/vim-surround'
@@ -78,7 +77,6 @@ Plug 'mhinz/vim-signify'
 " for project open
 Plug 'mhinz/vim-startify'
 " for html angular template
-Plug 'curist/vim-angular-template'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'tpope/vim-fugitive'
@@ -92,11 +90,9 @@ Plug 'L3MON4D3/LuaSnip'
 
 call plug#end()
 
-colorscheme dracula
 let mapleader=" "
 " set theme
-let g:gruvbox_contrast_dark='hard'
-
+colorscheme dracula
 
 
 
@@ -107,10 +103,11 @@ set laststatus=2
 " nnoremap gf :Files<CR>
 nnoremap <Leader>ff :Ag<CR>
 " nnoremap <C-n> :History<CR>
-nnoremap gf <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" Using Lua functions telescope
+nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nmap <Leader>t :tabnew<CR>
 nmap <Leader>s :vsplit<CR>
 nmap <Leader>i :split<CR>
@@ -193,3 +190,22 @@ snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
 " coc disable suggestions
 autocmd FileType markdown let b:coc_suggest_disable = 1
+" surround
+if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
+  nmap ds  <Plug>Dsurround
+  nmap cs  <Plug>Csurround
+  nmap ys  <Plug>Ysurround
+  nmap yS  <Plug>YSurround
+  nmap yss <Plug>Yssurround
+  nmap ySs <Plug>YSsurround
+  nmap ySS <Plug>YSsurround
+  xmap S   <Plug>VSurround
+  xmap gS  <Plug>VgSurround
+  if !exists("g:surround_no_insert_mappings") || ! g:surround_no_insert_mappings
+    if !hasmapto("<Plug>Isurround","i") && "" == mapcheck("<C-S>","i")
+      imap    <C-S> <Plug>Isurround
+    endif
+    imap      <C-G>s <Plug>Isurround
+    imap      <C-G>S <Plug>ISurround
+  endif
+endif
