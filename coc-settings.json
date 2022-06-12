@@ -1,0 +1,24 @@
+{
+    "html-css-support.enabledLanguages": [
+        "html",
+        "vue",
+        "blade",
+        "htmldjango",
+        "typescriptreact",
+        "javascriptreact",
+        "typescript"
+    ],
+    "html-css-support.styleSheets": [
+        "/style.css",
+        "style.css",
+        "style.scss",
+        "*.css",
+        "*.scss"
+    ],
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.showHiddenFiles": true,
+    "suggest.autoTrigger": "none",
+    "suggest.timeout": 1,
+    "diagnostic.enable": false,
+    "clangd.semanticHighlighting": true
+}
