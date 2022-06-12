@@ -28,7 +28,9 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'vim-syntastic/syntastic'
+Plug 'Quramy/vim-js-pretty-template'
 Plug 'crusoexia/vim-monokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'frazrepo/vim-rainbow'
@@ -88,11 +90,14 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 
+" on save
+Plug 'dense-analysis/ale'
 call plug#end()
 
 let mapleader=" "
 " set theme
 colorscheme dracula
+set background=dark
 
 
 
@@ -209,3 +214,21 @@ if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
     imap      <C-G>S <Plug>ISurround
   endif
 endif
+autocmd FileType typescript JsPreTmpl html
+autocmd FileType typescript syn clear foldBraces
+" for syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   'javascript': ['eslint', 'prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'typescriptreact': ['eslint', 'prettier'],
+\}

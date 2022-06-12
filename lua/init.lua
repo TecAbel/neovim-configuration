@@ -10,7 +10,11 @@ local lsp_defaults = {
   end
 }
 local lspconfig = require('lspconfig')
-
+lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+})
 lspconfig.util.default_config = vim.tbl_deep_extend(
   'force',
   lspconfig.util.default_config,
@@ -70,8 +74,6 @@ cmp.setup {
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
       else
         fallback()
       end
@@ -103,8 +105,9 @@ cmp.setup {
 -- Add additional capabilities supported by nvim-cmp
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("nvim-lsp-installer").setup {}
-local servers = { 'tsserver', 'angularls', 'html', 'emmet_ls', 'cssls' }
+local servers = { 'tsserver', 'angularls', 'html', 'emmet_ls', 'cssls', 'cssmodules_ls', 'tailwindcss' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
