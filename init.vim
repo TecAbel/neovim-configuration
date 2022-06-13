@@ -97,7 +97,7 @@ call plug#end()
 let mapleader=" "
 " set theme
 colorscheme dracula
-set background=dark
+hi Normal guibg=NONE ctermbg=NONE
 
 
 
