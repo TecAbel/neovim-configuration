@@ -16,7 +16,8 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set t_Co=256
-set termguicolors
+" set termguicolors only for windows
+
 
 
 call plug#begin()
@@ -32,7 +33,8 @@ Plug 'numToStr/Comment.nvim'
 Plug 'vim-syntastic/syntastic'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'crusoexia/vim-monokai'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' } oly windows
+Plug 'morhetz/gruvbox' 
 Plug 'frazrepo/vim-rainbow'
 
 "  :CocInstall coc-tsserver :CocInstall coc-css
@@ -96,7 +98,7 @@ call plug#end()
 
 let mapleader=" "
 " set theme
-colorscheme dracula
+colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
 
