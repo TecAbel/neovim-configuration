@@ -99,6 +99,7 @@ call plug#end()
 let mapleader=" "
 " set theme
 colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
 hi Normal guibg=NONE ctermbg=NONE
 
 
@@ -216,8 +217,8 @@ if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
     imap      <C-G>S <Plug>ISurround
   endif
 endif
-autocmd FileType typescript JsPreTmpl html
-autocmd FileType typescript syn clear foldBraces
+" autocmd FileType typescript JsPreTmpl html
+" autocmd FileType typescript syn clear foldBraces
 " for syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
