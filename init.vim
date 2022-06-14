@@ -16,7 +16,7 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set t_Co=256
-" set termguicolors only for windows
+set termguicolors "only for windows
 
 
 
@@ -82,7 +82,8 @@ Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 " for html angular template
 Plug 'ryanoasis/vim-devicons'
-
+"css colors
+Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 "for LSP
 Plug 'williamboman/nvim-lsp-installer'
