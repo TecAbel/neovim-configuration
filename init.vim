@@ -184,7 +184,7 @@ let g:airline_powerline_fonts = 1
 "
 " #################################################################
 " coc-explorer
-:nmap <space><space>e <Cmd>CocCommand explorer<CR>
+:nmap <space>n <Cmd>CocCommand explorer<CR>
 nmap <buffer> gD :tab LspDefinition<cr>
 " for github copilot
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
