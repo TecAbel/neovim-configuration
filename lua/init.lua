@@ -1,5 +1,9 @@
 local lsp_installer = require("nvim-lsp-installer")
 local luasnip = require("luasnip")
+local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   if server.name == "sumneko_lua" then
@@ -80,3 +84,10 @@ cmp.setup {
   },
 }
 
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+})

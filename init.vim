@@ -29,25 +29,19 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-" Plug 'sheerun/vim-polyglot'
 Plug 'vim-syntastic/syntastic'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'crusoexia/vim-monokai'
-" Plug 'dracula/vim', { 'as': 'dracula' } oly windows
 Plug 'morhetz/gruvbox' 
 Plug 'frazrepo/vim-rainbow'
 
-"  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-"file explorer choco install ag
 "utils
 Plug 'jiangmiao/auto-pairs'
 " closetag
 Plug 'alvan/vim-closetag'
-"files choco install fzf and ag
 Plug 'github/copilot.vim'
-Plug 'nikvdp/neomux'
 " finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -68,10 +62,9 @@ Plug 'tpope/vim-surround'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescriptreact', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescriptreact', 'lua', 'vim', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
  Plug 'itchyny/lightline.vim'
  Plug 'itchyny/vim-gitbranch'
@@ -91,10 +84,15 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp' 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 
 " on save
 Plug 'dense-analysis/ale'
+" icons
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 let mapleader=" "
@@ -176,14 +174,6 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 let g:airline_powerline_fonts = 1
-"toggle terminal
-"<leader>sh
-"<C-s> - Exit insert mode while in a neomux shell.
-
-
-"
-" #################################################################
-" coc-explorer
 :nmap <space>n <Cmd>CocCommand explorer<CR>
 nmap <buffer> gD :tab LspDefinition<cr>
 " for github copilot
@@ -235,4 +225,13 @@ let g:ale_fixers = {
 \   'javascript': ['eslint', 'prettier'],
 \   'typescript': ['eslint', 'prettier'],
 \   'typescriptreact': ['eslint', 'prettier'],
+\   'html': ['eslint', 'prettier'],
 \}
+
+" startyfy
+let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
