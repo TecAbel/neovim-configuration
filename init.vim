@@ -17,7 +17,8 @@ set cmdheight=2
 set updatetime=300
 set t_Co=256
 set termguicolors "only for windows
-
+set autoread
+" set foldmethod=syntax
 
 
 call plug#begin()
@@ -63,7 +64,7 @@ Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
+  \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['javascript', 'typescriptreact', 'lua', 'vim', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
  Plug 'itchyny/lightline.vim'
