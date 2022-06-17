@@ -38,8 +38,6 @@ Plug 'frazrepo/vim-rainbow'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-"utils
-Plug 'jiangmiao/auto-pairs'
 " closetag
 Plug 'alvan/vim-closetag'
 Plug 'github/copilot.vim'
@@ -56,8 +54,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'easymotion/vim-easymotion'
 " navigation tabs
 Plug 'christoomey/vim-tmux-navigator'
-" typescript suppport
-Plug 'pangloss/vim-javascript'
 " Multi cursor
 Plug 'tpope/vim-surround'
 
@@ -67,8 +63,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['javascript', 'typescriptreact', 'lua', 'vim', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
- Plug 'itchyny/lightline.vim'
- Plug 'itchyny/vim-gitbranch'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
  
 " git line
 Plug 'mhinz/vim-signify'
@@ -142,15 +138,9 @@ let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
 let g:VM_maps['Find Under'] = '<Leader>j'
 
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ },
-      \ }
+let g:airline_theme = 'apprentice'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#enabled = 1
 
 " Comment.nvim
 lua require('Comment').setup()
