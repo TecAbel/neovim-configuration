@@ -32,14 +32,13 @@ Plug 'numToStr/Comment.nvim'
 " for better colors
 Plug 'vim-syntastic/syntastic'
 Plug 'Quramy/vim-js-pretty-template'
-Plug 'crusoexia/vim-monokai'
 Plug 'morhetz/gruvbox' 
-Plug 'frazrepo/vim-rainbow'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " closetag
 Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
 Plug 'github/copilot.vim'
 " finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
