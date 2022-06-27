@@ -35,7 +35,7 @@ vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-
+vim.keymap.set('n', '<space>td', '<cmd>Telescope diagnostics<cr>',{ buffer=0 })
 
 -- cmp vim
 --
@@ -48,7 +48,7 @@ cmp.setup {
   },
   window = {
       -- completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
     },
   mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
