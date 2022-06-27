@@ -30,9 +30,10 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-Plug 'vim-syntastic/syntastic'
-Plug 'Quramy/vim-js-pretty-template'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'Quramy/vim-js-pretty-template'
 Plug 'morhetz/gruvbox' 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
