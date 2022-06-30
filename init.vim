@@ -20,7 +20,6 @@ set termguicolors "only for windows
 set autoread
 " set foldmethod=syntax
 
-
 call plug#begin()
 "for commentary
 " gcc one line normal mode
@@ -30,9 +29,8 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-" Plug 'vim-syntastic/syntastic'
-" Plug 'Quramy/vim-js-pretty-template'
-Plug 'morhetz/gruvbox' 
+" Plug 'morhetz/gruvbox' 
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -94,8 +92,9 @@ call plug#end()
 
 let mapleader=" "
 " set theme
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
+let g:dracula_italic = 0
+colorscheme dracula
+" let g:gruvbox_contrast_dark = 'hard'
 hi Normal guibg=NONE ctermbg=NONE
 
 
@@ -108,7 +107,10 @@ set laststatus=2
 nnoremap <Leader>ff :Ag<CR>
 " nnoremap <C-n> :History<CR>
 " Using Lua functions telescope
-nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files() hidden=true<cr>
+nnoremap <leader>gf <cmd>Telescope find_files hidden=true<cr>
+
+nnoremap <leader>di <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -138,7 +140,7 @@ let g:VM_maps = {}
 " space and j, start multicursors, next item use n N for previus
 let g:VM_maps['Find Under'] = '<Leader>j'
 
-let g:airline_theme = 'apprentice'
+let g:airline_theme = 'dracula'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#enabled = 1
 
@@ -202,24 +204,25 @@ endif
 " autocmd FileType typescript JsPreTmpl html
 " autocmd FileType typescript syn clear foldBraces
 " for syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   'javascript': ['eslint', 'prettier'],
-\   'typescript': ['eslint', 'prettier'],
-\   'typescriptreact': ['eslint', 'prettier'],
-\   'html': ['eslint', 'prettier'],
-\   'python': ['prettier'],
-\}
-
+" let g:ale_fix_on_save = 1
+" let g:ale_fixers = {
+" \   'javascript': ['eslint', 'prettier'],
+" \   'typescript': ['eslint', 'prettier'],
+" \   'typescriptreact': ['eslint', 'prettier'],
+" \   'html': ['eslint', 'prettier'],
+" \   'python': ['prettier'],
+" \}
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 " startyfy
 let g:startify_lists = [
           \ { 'type': 'sessions',  'header': ['   Sessions']       },
