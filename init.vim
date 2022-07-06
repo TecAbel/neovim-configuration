@@ -108,7 +108,7 @@ nnoremap <Leader>ff :Ag<CR>
 " nnoremap <C-n> :History<CR>
 " Using Lua functions telescope
 " nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files() hidden=true<cr>
-nnoremap <leader>gf <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>gf <cmd>Telescope find_files <cr>
 
 nnoremap <leader>di <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
