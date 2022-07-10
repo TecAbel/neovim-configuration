@@ -3,7 +3,6 @@ local luasnip = require("luasnip")
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-
 lsp_installer.on_server_ready(function(server)
   local opts = {}
   if server.name == "sumneko_lua" then
@@ -79,8 +78,8 @@ cmp.setup {
     end, { "i", "s" }),
   },
   sources = {
-    { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -98,11 +97,11 @@ cmp.setup {
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-lspconfig.emmet_ls.setup({
+--[[ lspconfig.emmet_ls.setup({
     -- on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-})
+}) ]]
 -- treesitter
 --
 require'nvim-treesitter.configs'.setup {
@@ -134,4 +133,9 @@ require'nvim-treesitter.configs'.setup {
 }
 --
 --
---
+---- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig')['cssls'].setup {
+  capabilities = capabilities
+}

@@ -134,6 +134,8 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 let g:coc_global_extensions = ['coc-explorer', 'coc-lists']
 
+:tnoremap <Esc> <C-\><C-n>
+
 set guifont=JetBrainsMono_NF:h13
 
 " muticursors 
@@ -168,7 +170,8 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 let g:airline_powerline_fonts = 1
-:nmap <space>n <Cmd>CocCommand explorer<CR>
+" :nmap <space>n <Cmd>CocCommand explorer<CR>
+nnoremap <leader>n :Explore<CR>
 nmap <buffer> gD :tab LspDefinition<cr>
 " for github copilot
 " imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
@@ -231,3 +234,5 @@ let g:startify_lists = [
           \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
           \ ]
+" autoclose-tag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
