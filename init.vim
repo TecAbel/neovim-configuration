@@ -45,7 +45,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'airblade/vim-rooter'
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
 " easymotion
@@ -151,16 +150,6 @@ let g:airline#extensions#tabline#enabled = 1
 lua require('Comment').setup()
 lua require('init')
 
-let g:rooter_targets = '/,*'
-
-" All files
-let g:rooter_targets = '*'
-
-" YAML files
-let g:rooter_targets = '*.yml,*.yaml'
-
-" Directories and YAML files
-let g:rooter_targets = '/,*.yml,*.yaml'
 
 " telescope
 function! GetNVimVersion()
