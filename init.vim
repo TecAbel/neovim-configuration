@@ -19,13 +19,6 @@ set t_Co=256
 set termguicolors
 
 
-" for better navigation
-" nnoremap <C-j> 10j
-" nnoremap <C-k> 10k
-
-
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 call plug#begin()
 "for commentary
@@ -36,34 +29,23 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-Plug 'sheerun/vim-polyglot'
-Plug 'crusoexia/vim-monokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'frazrepo/vim-rainbow'
-
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "  typescript 
-"  :CocInstall coc-tsserver :CocInstall coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "file explorer choco install ag
-" Plug 'preservim/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'PhilRunninger/nerdtree-visual-selection'
-" Plug 'scrooloose/nerdtree-project-plugin'
 "utils
 Plug 'jiangmiao/auto-pairs'
 " closetag
 Plug 'alvan/vim-closetag'
 "files choco install fzf and ag
 
-Plug 'nikvdp/neomux'
 " finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'airblade/vim-rooter'
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
 " easymotion
@@ -71,8 +53,6 @@ Plug 'easymotion/vim-easymotion'
 " navigation tabs
 Plug 'christoomey/vim-tmux-navigator'
 " typescript suppport
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
 " Multi cursor
 Plug 'tpope/vim-surround'
 
@@ -83,20 +63,24 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescriptreact', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
- Plug 'itchyny/lightline.vim'
- Plug 'itchyny/vim-gitbranch'
- 
-" git line
- Plug 'mhinz/vim-signify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " for project open
 Plug 'mhinz/vim-startify'
 " for html angular template
 Plug 'curist/vim-angular-template'
-Plug 'ryanoasis/vim-devicons'
+"css colors
+Plug 'ap/vim-css-color'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
-" coc config
+let g:dracula_italic = 0
 colorscheme dracula
+hi Normal guibg=NONE ctermbg=NONE
+
+let g:airline_theme = 'dracula'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#enabled = 1
 
 " for css autocomplete
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
@@ -107,7 +91,7 @@ autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 
 let mapleader=" "
 " set theme
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -117,47 +101,50 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 let mapleader=" "
 " set theme
-let g:gruvbox_contrast_dark='hard'
 set laststatus=2
-"set keymap to nerdtree
-" nnoremap <Leader>nn :NERDTreeToggle<CR>
-" nnoremap gf :Files<CR>
-nnoremap <Leader>ff :Ag<CR>
-" nnoremap <C-n> :History<CR>
-nnoremap gf <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" :let g:NERDTreeWinSize=60
-" let NERDTreeShowHidden=1
+
+nnoremap <leader>n :Explore <cr>
+nnoremap <leader>di <cmd>Telescope diagnostics<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 nmap <Leader>t :tabnew<CR>
 nmap <Leader>s :vsplit<CR>
 nmap <Leader>i :split<CR>
 nnoremap tg gT
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-k> coc#refresh()
 
-" nnoremap <C-O> :Prettier<CR>
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-nnoremap <Leader>o :OR <CR> 
 nnoremap <Leader>p :Prettier<CR>
+" format on save
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 nnoremap <Leader>ee :Startify<CR>
 nnoremap <Leader>w :w<CR>
 
 nnoremap <Leader>q :q<CR>
 "quick semi
 nnoremap <Leader>; $a;<Esc>
-"for definitions
+"for coc config
+nnoremap <Leader>o :OR <CR> 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" - To learn more about preview window options, see `--preview-window` section of `man fzf`.
+nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+inoremap <silent><expr> <C-k> coc#refresh()
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-html-css-support', 'coc-explorer', 'coc-angular', 'coc-emmet', 'coc-angular', 'coc-lists']
+
+
+
+
 nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
-
-let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-html-css-support', 'coc-explorer', 'coc-angular', 'coc-emmet', 'coc-angular', 'coc-lists']
 
 set guifont=JetBrainsMono_NF:h13
 
@@ -176,37 +163,12 @@ let g:VM_maps['Find Under'] = '<Leader>j'
 autocmd FileType css,scss set iskeyword=@,48-57,_,-,?,!,192-255
 autocmd FileType scss setl iskeyword+=@-@
 set iskeyword+=-
-" status bar
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ },
-      \ }
 
-" let NERDTreeDirArrowExpandable = ""
-" let NERDTreeDirArrowCollapsible = ""
+
 
 
 " Comment.nvim
 lua require('Comment').setup()
-" let g:nerdtree_vis_confirm_open = 0
-
-" for rooter
-" Everything (default)
-let g:rooter_targets = '/,*'
-
-" All files
-let g:rooter_targets = '*'
-
-" YAML files
-let g:rooter_targets = '*.yml,*.yaml'
-
-" Directories and YAML files
-let g:rooter_targets = '/,*.yml,*.yaml'
 
 " telescope
 function! GetNVimVersion()
@@ -216,13 +178,27 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 let g:airline_powerline_fonts = 1
-"toggle terminal
-"<leader>sh
-"<C-s> - Exit insert mode while in a neomux shell.
+
+" Startify order
+let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
+" autoclose-tag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
+"for treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "javascript", "lua", "typescript", "html", "json", "comment", "vim" },
 
 
-"
-" #################################################################
-" coc-explorer
-:nmap <space><space>e <Cmd>CocCommand explorer<CR>
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
 
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
