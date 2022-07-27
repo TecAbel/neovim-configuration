@@ -159,8 +159,8 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 let g:airline_powerline_fonts = 1
-" :nmap <space>n <Cmd>CocCommand explorer<CR>
-nnoremap <leader>n :Explore<CR>
+:nmap <space>n <Cmd>CocCommand explorer<CR>
+" nnoremap <leader>n :Explore<CR>
 nmap <buffer> gD :tab LspDefinition<cr>
 " for github copilot
 " imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
@@ -225,3 +225,7 @@ let g:startify_lists = [
           \ ]
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
+
+" coc Organize imports
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+nnoremap <Leader>o :OR <CR>
