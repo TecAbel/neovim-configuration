@@ -13,6 +13,13 @@ set encoding=UTF-8
 set hidden
 set nobackup
 set nowritebackup
+
+set virtualedit=all
+
+color desert
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+
 set cmdheight=2
 set updatetime=300
 set t_Co=256
