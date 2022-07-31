@@ -107,7 +107,6 @@ server_filetype_map = {},
 
 EOF
 
-nnoremap <leader>ca <cmd>Lspsaga code_action <cr>
 " nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
 " nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
 
