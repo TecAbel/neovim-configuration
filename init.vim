@@ -25,7 +25,7 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 set cmdheight=2
 set updatetime=300
 set t_Co=256
-set termguicolors "only for windows
+" set termguicolors "only for windows terminal
 set autoread
 set cmdheight=1
 " set foldmethod=syntax
@@ -37,8 +37,22 @@ lua require('Comment').setup()
 " end imports
 
 " set theme
-let g:dracula_italic = 0
-colorscheme dracula
+if exists("&termguicolors") && exists("&winblend")
+  syntax enable
+  set termguicolors
+  set winblend=0
+  set wildoptions=pum
+  set pumblend=5
+  set background=dark
+  " Use NeoSolarized
+  let g:neosolarized_termtrans=1
+  runtime ./colors/NeoSolarized.vim
+  colorscheme NeoSolarized
+else
+  let g:dracula_italic = 0
+  colorscheme dracula
+endif
+" end set theme
 hi Normal guibg=NONE ctermbg=NONE
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
