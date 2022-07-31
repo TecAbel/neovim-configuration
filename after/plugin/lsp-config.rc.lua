@@ -52,8 +52,8 @@ cmp.setup {
     end,
   },
   window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
@@ -89,7 +89,7 @@ cmp.setup {
   },
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol_text', -- show only symbol annotations
+      mode = 'symbol_text', -- show only symbol annotations symbol_text
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 
       -- The function below will be called before any actual modifications from lspkind
