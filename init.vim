@@ -51,9 +51,9 @@ if exists("&termguicolors") && exists("&winblend")
 else
   let g:dracula_italic = 0
   colorscheme dracula
+  hi Normal guibg=NONE ctermbg=NONE
 endif
 " end set theme
-hi Normal guibg=NONE ctermbg=NONE
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 

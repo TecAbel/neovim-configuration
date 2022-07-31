@@ -41,3 +41,10 @@ snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
 nmap <buffer> gD :tab LspDefinition<cr>
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 nnoremap <Leader>o :OR <CR>
+" lsp saga mapping
+nnoremap <leader>ca <cmd>Lspsaga code_action <cr>
+nnoremap <leader>dn <cmd>Lspsaga diagnostic_jump_next <cr>
+nnoremap <leader>dp <cmd>Lspsaga diagnostic_jump_prev <cr>
+nnoremap K <cmd>Lspsaga hover_doc <cr>
+nnoremap <leader>rn <cmd>Lspsaga rename <cr>
+nnoremap gd <cmd>Lspsaga lsp_finder <cr> 
