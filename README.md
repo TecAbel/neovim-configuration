@@ -25,11 +25,9 @@ optional but recommended
    Choose “Font” and make the change to the terminal font as desired
    to run 
  - if using windows change it in windows terminal preferences, profile, command promt, appereance, text, save
- `
- :PlugInstall
- :LspInstallInfo
- :TSInstallInfo
- `
+  - `:PlugInstall`
+  - `:TSInstallInfo`
+  - `:LspInstallInfo`
 
 # for Webstorm
  - use emulation (https://github.com/JetBrains/ideavim)
