@@ -21,6 +21,7 @@ set si "Smart indent
 color desert
 set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey40
+hi Normal guibg=NONE gui=NONE
 
 set cmdheight=2
 set updatetime=300
@@ -45,6 +46,7 @@ if exists("&termguicolors") && exists("&winblend")
   set pumblend=5
   set background=dark
   " Use NeoSolarized
+  let g:neosolarized_contrast = "high"
   let g:neosolarized_termtrans=1
   runtime ./colors/NeoSolarized.vim
   colorscheme NeoSolarized

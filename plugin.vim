@@ -11,6 +11,7 @@ Plug 'numToStr/Comment.nvim'
 " Plug 'morhetz/gruvbox' 
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-angular'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -19,8 +20,6 @@ Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'github/copilot.vim'
 " finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
@@ -46,7 +45,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify'
 " for project open
 Plug 'mhinz/vim-startify'
-" for html angular template
 Plug 'ryanoasis/vim-devicons'
 "css colors
 Plug 'ap/vim-css-color'
