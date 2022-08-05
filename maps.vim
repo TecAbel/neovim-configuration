@@ -27,8 +27,8 @@ nnoremap <Leader>ee :Startify<CR>
 nnoremap <Leader>w :w<CR>
 
 nnoremap <Leader>q :q<CR>
-"quick semi
-nnoremap <Leader>; $a;<Esc>
+"quick comma
+nnoremap <Leader>, $a,<Esc>
 nmap <Leader><Leader>s <Plug>(easymotion-s2)
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 " -1 for jumping backwards.
