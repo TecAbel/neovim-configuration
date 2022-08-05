@@ -31,6 +31,7 @@ set autoread
 set cmdheight=1
 " set foldmethod=syntax
 
+set completeopt=menu,menuone,noinsert,noselect
 " imports
 runtime ./plugin.vim
 runtime ./maps.vim
@@ -82,4 +83,3 @@ endfunction
 
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
-set completeopt=menuone,noinsert,noselect

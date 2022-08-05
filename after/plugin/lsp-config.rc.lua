@@ -58,7 +58,7 @@ cmp.setup {
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      -- behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -83,10 +83,12 @@ cmp.setup {
       end
     end, { "i", "s" }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  },
+  }, {
+    { name = 'buffer' },
+  }),
   formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol_text', -- show only symbol annotations symbol_text
@@ -115,7 +117,7 @@ require('lspconfig')['cssls'].setup {
   capabilities = capabilities
 }
 -- formatting
--- vim.api.nvim_command [[augroup Format]]
--- vim.api.nvim_command [[autocmd! * <buffer>]]
--- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
--- vim.api.nvim_command [[augroup END]]
+vim.api.nvim_command [[augroup Format]]
+vim.api.nvim_command [[autocmd! * <buffer>]]
+vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+vim.api.nvim_command [[augroup END]]
