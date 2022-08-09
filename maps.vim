@@ -36,7 +36,8 @@ inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-:nmap <space>n <Cmd>CocCommand explorer<CR>
+" :nmap <space>n <Cmd>CocCommand explorer<CR>
+:nmap <leader>n <Cmd>:Telescope file_browser<CR>
 " nnoremap <leader>n :Explore<CR>
 nmap <buffer> gD :tab LspDefinition<cr>
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')

@@ -22,6 +22,7 @@ Plug 'jiangmiao/auto-pairs'
 " finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " init.vim
 Plug 'lukas-reineke/indent-blankline.nvim'
