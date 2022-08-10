@@ -49,3 +49,7 @@ nnoremap <leader>dp <cmd>Lspsaga diagnostic_jump_prev <cr>
 nnoremap K <cmd>Lspsaga hover_doc <cr>
 nnoremap <leader>rn <cmd>Lspsaga rename <cr>
 nnoremap gd <cmd>Lspsaga lsp_finder <cr> 
+nmap ;n :bn<cr>
+nmap ;p :bp<cr>
+nmap ;d :%bd <bar> e# <cr>
+
