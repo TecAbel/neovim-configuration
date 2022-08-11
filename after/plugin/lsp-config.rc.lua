@@ -134,6 +134,7 @@ require'lspconfig'.angularls.setup{
     new_config.cmd = cmd
   end,
 }
+require'lspconfig'.eslint.setup{}
 
 
 -- formatting
