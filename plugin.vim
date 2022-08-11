@@ -51,7 +51,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
 "for LSP
-Plug 'williamboman/nvim-lsp-installer'
+" Plug 'williamboman/nvim-lsp-installer'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
