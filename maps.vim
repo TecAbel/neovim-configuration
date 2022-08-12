@@ -51,7 +51,6 @@ nnoremap <leader>rn <cmd>Lspsaga rename <cr>
 nnoremap gd <cmd>Lspsaga lsp_finder <cr> 
 nnoremap gp <cmd>Lspsaga preview_definition <cr>
 " buffer navigation and deletion
-nmap ;n :bn<cr>
-nmap ;p :bp<cr>
-nmap ;d :%bd <bar> e# <cr>
+nmap ;da :%bd <bar> e# <cr>
+nmap ;dd :bd <cr>
 

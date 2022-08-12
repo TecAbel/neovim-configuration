@@ -46,7 +46,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify'
 " for project open
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 "css colors
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
@@ -70,4 +70,5 @@ Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'dense-analysis/ale'
 " icons
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 call plug#end()
