@@ -1,23 +1,23 @@
--- local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer = require("nvim-lsp-installer")
 local luasnip = require("luasnip")
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- lsp_installer.on_server_ready(function(server)
---   local opts = {}
---   if server.name == "sumneko_lua" then
---     opts = {
---       settings = {
---         Lua = {
---           diagnostics = {
---             globals = { 'vim', 'use' }
---           },
---         }
---       }
---     }
---   end
---   server:setup(opts)
--- end)
+lsp_installer.on_server_ready(function(server)
+  local opts = {}
+  if server.name == "sumneko_lua" then
+    opts = {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim', 'use' }
+          },
+        }
+      }
+    }
+  end
+  server:setup(opts)
+end)
  -- Mappings.
 local bufopts = { noremap=true, silent=true }
 local on_attach = function(client, bufnr)
@@ -135,14 +135,14 @@ local cmd = {"ngserver.cmd", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLo
 require'lspconfig'.tsserver.setup{
   on_attach = on_attach
 }
-require'lspconfig'.angularls.setup{
-  on_attach = on_attach,
-  cmd = cmd,
-  filetypes = { 'typescript', 'html' },
-  on_new_config = function(new_config,new_root_dir)
-    new_config.cmd = cmd
-  end,
-}
+-- require'lspconfig'.angularls.setup{
+--   on_attach = on_attach,
+--   cmd = cmd,
+--   filetypes = { 'typescript', 'html' },
+--   on_new_config = function(new_config,new_root_dir)
+--     new_config.cmd = cmd
+--   end,
+-- }
 require'lspconfig'.eslint.setup{}
 require'lspconfig'.html.setup{}
 -- require'lspconfig'.sumneko_lua.setup{}
