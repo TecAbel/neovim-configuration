@@ -21,6 +21,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
  -- Mappings.
 local bufopts = { noremap=true, silent=true }
 local on_attach = function(client, bufnr)
+  -- formatting
+  vim.api.nvim_command [[augroup Format]]
+  vim.api.nvim_command [[autocmd! * <buffer>]]
+  vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+  vim.api.nvim_command [[augroup END]]
+
+  -- base keymaps
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -28,7 +35,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wl', function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
@@ -125,7 +132,9 @@ local cwd = vim.fn.getcwd()
 local cmd = {"ngserver.cmd", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
 
 -- require'lspconfig'.angularls.setup{}
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.tsserver.setup{
+  on_attach = on_attach
+}
 require'lspconfig'.angularls.setup{
   on_attach = on_attach,
   cmd = cmd,
@@ -135,12 +144,8 @@ require'lspconfig'.angularls.setup{
   end,
 }
 require'lspconfig'.eslint.setup{}
+require'lspconfig'.html.setup{}
 -- require'lspconfig'.sumneko_lua.setup{}
 require'lspconfig'.vimls.setup{}
 
 
--- formatting
-vim.api.nvim_command [[augroup Format]]
-vim.api.nvim_command [[autocmd! * <buffer>]]
-vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-vim.api.nvim_command [[augroup END]]
