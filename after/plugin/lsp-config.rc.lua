@@ -18,7 +18,7 @@ lsp_installer.on_server_ready(function(server)
   end
   server:setup(opts)
 end)
- -- Mappings.
+-- Mappings.
 local bufopts = { noremap=true, silent=true }
 local on_attach = function(client, bufnr)
   -- formatting
@@ -61,9 +61,9 @@ cmp.setup {
     end,
   },
   window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -115,37 +115,36 @@ cmp.setup {
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 --[[ lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
 }) ]]
 ---- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['cssls'].setup {
-  capabilities = capabilities
-}
--- require('lspconfig')['tsserver'].setup {
---   on_attach = on_attach
+-- require('lspconfig')['cssls'].setup {
+--   capabilities = capabilities
 -- }
+-- require('lspconfig')['tsserver'].setup {
+  --   on_attach = on_attach
+  -- }
 require'lspconfig'.tailwindcss.setup{}
 local cwd = vim.fn.getcwd()
 local cmd = {"ngserver.cmd", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
 
 -- require'lspconfig'.angularls.setup{}
-require'lspconfig'.tsserver.setup{
-  on_attach = on_attach
-}
--- require'lspconfig'.angularls.setup{
---   on_attach = on_attach,
---   cmd = cmd,
---   filetypes = { 'typescript', 'html' },
---   on_new_config = function(new_config,new_root_dir)
---     new_config.cmd = cmd
---   end,
+-- require'lspconfig'.tsserver.setup{
+--   on_attach = on_attach
 -- }
-require'lspconfig'.eslint.setup{}
-require'lspconfig'.html.setup{}
+-- require'lspconfig'.angularls.setup{
+  --   on_attach = on_attach,
+  --   cmd = cmd,
+  --   filetypes = { 'typescript', 'html' },
+  --   on_new_config = function(new_config,new_root_dir)
+    --     new_config.cmd = cmd
+    --   end,
+    -- }
+-- require'lspconfig'.eslint.setup{}
+-- require'lspconfig'.html.setup{}
 -- require'lspconfig'.sumneko_lua.setup{}
-require'lspconfig'.vimls.setup{}
-
+-- require'lspconfig'.vimls.setup{}
 

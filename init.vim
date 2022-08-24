@@ -3,6 +3,7 @@ set number
 set mouse=a
 set sw=2
 set expandtab
+set autoindent
 set smartindent
 set numberwidth=1
 set ignorecase
@@ -74,10 +75,10 @@ let g:VM_maps['Find Under'] = '<Leader>j'
 
 " telescope
 function! GetNVimVersion()
-    redir => s
-    silent! version
-    redir END
-    return matchstr(s, 'NVIM v\zs[^\n]*')
+  redir => s
+  silent! version
+  redir END
+  return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 
 

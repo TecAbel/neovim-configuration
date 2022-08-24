@@ -22,7 +22,7 @@ nmap <Leader>i :split<CR>
 nnoremap tg gT
 
 nnoremap <Leader>o :OR <CR> 
-nnoremap <Leader>p :Prettier<CR>
+nnoremap <Leader>p gg=G 
 nnoremap <Leader>ee :Startify<CR>
 nnoremap <Leader>w :w<CR>
 
@@ -53,4 +53,7 @@ nnoremap gp <cmd>Lspsaga preview_definition <cr>
 " buffer navigation and deletion
 nmap ;da :%bd <bar> e# <cr>
 nmap ;dd :bd <cr>
+
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
 
