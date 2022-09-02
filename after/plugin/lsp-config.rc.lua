@@ -120,16 +120,35 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
   filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
 }) ]]
 ---- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- require('lspconfig')['cssls'].setup {
---   capabilities = capabilities
--- }
--- require('lspconfig')['tsserver'].setup {
-  --   on_attach = on_attach
-  -- }
-require'lspconfig'.tailwindcss.setup{}
+--Enable (broadcasting) snippet capability for completion
+local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
 local cwd = vim.fn.getcwd()
 local cmd = {"ngserver.cmd", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
+cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.cssls.setup {
+  capabilities = cssCapabilities,
+  settings = {
+    css = {
+      validate = true
+    },
+    less = {
+      validate = true
+    },
+    scss = {
+      validate = true
+    }
+  },
+  single_file_support = true
+
+}
+require'lspconfig'.tsserver.setup {
+  on_attach = on_attach
+}
+require'lspconfig'.omnisharp.setup {
+  on_attach = on_attach
+}
+require'lspconfig'.tailwindcss.setup{}
 
 -- require'lspconfig'.angularls.setup{}
 -- require'lspconfig'.tsserver.setup{
