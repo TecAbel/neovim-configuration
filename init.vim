@@ -21,8 +21,8 @@ set si "Smart indent
 
 color desert
 set cursorline
-hi CursorLine term=bold cterm=bold guibg=Grey40
-hi Normal guibg=NONE gui=NONE
+" hi CursorLine term=bold cterm=bold guibg=Grey40
+" hi Normal guibg=NONE gui=NONE
 
 set cmdheight=2
 set updatetime=300
@@ -55,14 +55,14 @@ if exists("&termguicolors") && exists("&winblend")
 else
   let g:dracula_italic = 0
   colorscheme dracula
-  hi Normal guibg=NONE ctermbg=NONE
+  " hi Normal guibg=NONE ctermbg=NONE
 endif
 " end set theme
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 
 
-set guifont=JetBrainsMono_NF:h13
+" set guifont=JetBrainsMono_NF:h13
 
 " muticursors 
 let g:VM_maps = {}

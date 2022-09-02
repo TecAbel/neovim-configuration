@@ -11,7 +11,7 @@ Plug 'numToStr/Comment.nvim'
 " Plug 'morhetz/gruvbox' 
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-angular'
+" Plug 'nvim-treesitter/nvim-treesitter-angular'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
