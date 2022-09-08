@@ -50,6 +50,7 @@ nnoremap K <cmd>Lspsaga hover_doc <cr>
 nnoremap <leader>rn <cmd>Lspsaga rename <cr>
 nnoremap gd <cmd>Lspsaga lsp_finder <cr> 
 nnoremap gp <cmd>Lspsaga preview_definition <cr>
+nnoremap ge <cmd>Lspsaga show_line_diagnostics <cr>
 " buffer navigation and deletion
 nmap ;da :%bd <bar> e# <cr>
 nmap ;dd :bd <cr>
