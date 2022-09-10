@@ -39,11 +39,10 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'for': ['javascript', 'python', 'typescriptreact', 'lua', 'vim', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
  
 " git line
-Plug 'mhinz/vim-signify'
+Plug 'lewis6991/gitsigns.nvim'
 " for project open
 Plug 'mhinz/vim-startify'
 " Plug 'ryanoasis/vim-devicons'
@@ -64,7 +63,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind.nvim'
-Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+Plug 'glepnir/lspsaga.nvim'
 
 " on save
 Plug 'dense-analysis/ale'

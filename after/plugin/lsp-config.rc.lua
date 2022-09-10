@@ -145,10 +145,13 @@ require'lspconfig'.cssls.setup {
 require'lspconfig'.tsserver.setup {
   on_attach = on_attach
 }
-require'lspconfig'.omnisharp.setup {
+require'lspconfig'.csharp_ls.setup {
   on_attach = on_attach
 }
 require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.pyright.setup{
+  on_attach = on_attach
+}
 
 -- require'lspconfig'.angularls.setup{}
 -- require'lspconfig'.tsserver.setup{
