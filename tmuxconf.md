@@ -40,3 +40,4 @@ neww
 splitw -h
 splitw -v
 # dont forget to install Tmux Plugin Manager TPM
+## run prefix + I
