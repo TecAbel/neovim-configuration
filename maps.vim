@@ -36,9 +36,7 @@ inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-" :nmap <space>n <Cmd>CocCommand explorer<CR>
-" :nmap <leader>n <Cmd>:Telescope file_browser default_selection_index=2<CR>
-" nnoremap <leader>n :Explore<CR>
+
 nmap <buffer> gD :tab LspDefinition<cr>
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 nnoremap <Leader>o :OR <CR>
@@ -55,6 +53,23 @@ nnoremap ge <cmd>Lspsaga show_line_diagnostics <cr>
 nmap ;da :%bd <bar> e# <cr>
 nmap ;dd :bd <cr>
 
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-
+" imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+" let g:copilot_no_tab_map = v:true
+" for lint Ale
+" need to install pip and pip install flake and black
+let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
+let b:ale_linters = {
+      \'python': ['flake8'],
+      \'javascript': ['prettier', 'eslint'],
+      \'typescript': ['prettier', 'eslint'],
+      \'typescriptreact': ['prettier', 'eslint']
+      \}
+" Fix Python files with autopep8 and yapf.
+let b:ale_fixers = {
+      \'python': ['black', 'isort'],
+      \'javascript': ['prettier'],
+      \'typescript': ['prettier'],
+      \'typescriptreact': ['prettier']
+      \}
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1

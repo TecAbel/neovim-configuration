@@ -51,7 +51,39 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
+
 cmp.setup {
+  view = {
+    entries = "custom"
+  },
   performance = {
     trigger_debounce_time = 500
   }, 
@@ -67,7 +99,7 @@ cmp.setup {
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
-      -- behavior = cmp.ConfirmBehavior.Replace,
+      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -100,17 +132,45 @@ cmp.setup {
   }),
   formatting = {
     format = lspkind.cmp_format({
+      with_text = false,
       mode = 'symbol_text', -- show only symbol annotations symbol_text
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
       before = function (entry, vim_item)
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         return vim_item
       end
     })
   }
 }
+
+vim.cmd [[
+  set completeopt=menuone,noinsert,noselect
+  highlight! default link CmpItemKind CmpItemMenuDefault
+ " highlight! Pmenu guibg=#002b36 guifg=#002b36
+  highlight! CmpItemKindText guibg=#fffff guifg=#002b36
+
+  " gray
+  highlight! CmpItemAbbrDeprecated guibg=NONE guifg=#2d2d30
+
+  " blue
+  highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+  highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+  " light blue
+  highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+  highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+  highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+  " pink
+  highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+  highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+  " front
+  highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+  highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+  highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+]]
+
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -149,8 +209,22 @@ require'lspconfig'.csharp_ls.setup {
   on_attach = on_attach
 }
 require'lspconfig'.tailwindcss.setup{}
-require'lspconfig'.pyright.setup{
-  on_attach = on_attach
+require'lspconfig'.pylsp.setup{
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 79
+        },
+        black = {
+          ignore = {'E203'},
+          maxLineLength = 88
+        }
+      }
+    }
+  }
 }
 
 -- require'lspconfig'.angularls.setup{}

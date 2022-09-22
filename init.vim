@@ -1,4 +1,5 @@
 syntax on
+:syntime on
 set number
 set mouse=a
 set sw=2
@@ -25,7 +26,7 @@ set cursorline
 " hi Normal guibg=NONE gui=NONE
 
 set cmdheight=2
-set updatetime=300
+" set updatetime=300
 set t_Co=256
 " set termguicolors "only for windows terminal
 set autoread
@@ -89,3 +90,13 @@ let g:closetag_regions =  {
 \ 'typescript.tsx': 'jsxRegion,tsxRegion',
 \ 'javascript.jsx': 'jsxRegion',
 \ }
+
+
+lua << EOF
+  vim.opt.cursorline = true
+  vim.opt.termguicolors = true
+  vim.opt.winblend = 0
+  vim.opt.wildoptions = 'pum'
+  vim.opt.pumblend = 5
+  vim.opt.background = 'dark'
+EOF
