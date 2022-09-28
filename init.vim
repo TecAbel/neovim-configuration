@@ -1,4 +1,5 @@
 syntax on
+
 :syntime on
 set number
 set mouse=a
