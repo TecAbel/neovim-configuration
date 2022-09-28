@@ -41,7 +41,6 @@ lua require('Comment').setup()
 " end imports
 
 " set theme
-if exists("&termguicolors") && exists("&winblend")
   syntax enable
   set termguicolors
   set winblend=0
@@ -50,14 +49,12 @@ if exists("&termguicolors") && exists("&winblend")
   set background=dark
   " Use NeoSolarized
   let g:neosolarized_contrast = "high"
-  let g:neosolarized_termtrans=1
-  runtime ./colors/NeoSolarized.vim
-  colorscheme NeoSolarized
-else
-  let g:dracula_italic = 0
-  colorscheme dracula
+  let g:neosolarized_termtrans= 1
+  " runtime ./colors/NeoSolarized.vim
+  colorscheme neosolarized
+  " let g:dracula_italic = 0
+  " colorscheme dracula
   " hi Normal guibg=NONE ctermbg=NONE
-endif
 " end set theme
 
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
@@ -100,3 +97,8 @@ lua << EOF
   vim.opt.pumblend = 5
   vim.opt.background = 'dark'
 EOF
+" Use NeoSolarized
+let g:neosolarized_contrast = "high"
+let g:neosolarized_termtrans= 1
+runtime ./colors/NeoSolarized.vim
+colorscheme neosolarized

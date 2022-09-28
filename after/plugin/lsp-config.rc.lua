@@ -93,8 +93,8 @@ cmp.setup {
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
@@ -202,8 +202,22 @@ require'lspconfig'.cssls.setup {
   single_file_support = true
 
 }
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = {vim.api.nvim_buf_get_name(0)},
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
 require'lspconfig'.tsserver.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    }
+  }
 }
 require'lspconfig'.csharp_ls.setup {
   on_attach = on_attach

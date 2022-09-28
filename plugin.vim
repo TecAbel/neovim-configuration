@@ -10,6 +10,8 @@ Plug 'numToStr/Comment.nvim'
 " for better colors
 " Plug 'morhetz/gruvbox' 
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'svrana/neosolarized.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/nvim-treesitter-angular'
 
