@@ -37,6 +37,7 @@ set cmdheight=1
 set completeopt=menu,menuone,noinsert,noselect
 " imports
 runtime ./plugin.vim
+lua require('impatient')
 runtime ./maps.vim
 lua require('Comment').setup()
 " end imports

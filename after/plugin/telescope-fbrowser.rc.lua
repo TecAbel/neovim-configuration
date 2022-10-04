@@ -9,6 +9,7 @@ end
 -- IMPORTANT!: this is only a showcase of how you can set default options!
 telescope.setup {
   defaults = {
+    file_ignore_patterns = { "node_modules" },
     mappings = {
       n = {
         ["q"] = actions.close

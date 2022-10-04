@@ -73,4 +73,6 @@ Plug 'dense-analysis/ale'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
+" performance
+Plug 'lewis6991/impatient.nvim'
 call plug#end()
