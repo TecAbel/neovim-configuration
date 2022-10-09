@@ -10,7 +10,7 @@ nnoremap <Leader>ff :Ag<CR>
 " Using Lua functions telescope
 " nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files() hidden=true<cr>
 nnoremap <leader>gf <cmd>Telescope find_files <cr>
-:tnoremap <Esc> <C-\><C-n>
+imap <Esc> <C-c>
 
 nnoremap <leader>di <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
@@ -72,3 +72,5 @@ let b:ale_fixers = {
       \}
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
+" exec flutter
+nnoremap fr <cmd>FlutterRun -d linux <cr>

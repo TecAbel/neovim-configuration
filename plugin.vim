@@ -75,4 +75,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
 " performance
 Plug 'lewis6991/impatient.nvim'
+" flutter
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 call plug#end()

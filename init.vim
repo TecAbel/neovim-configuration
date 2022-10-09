@@ -1,6 +1,6 @@
 syntax on
 
-:syntime on
+syntime on
 set number
 set mouse=a
 set sw=2
@@ -37,8 +37,8 @@ set cmdheight=1
 set completeopt=menu,menuone,noinsert,noselect
 " imports
 runtime ./plugin.vim
-lua require('impatient')
 runtime ./maps.vim
+lua require('impatient')
 lua require('Comment').setup()
 " end imports
 
@@ -104,3 +104,5 @@ let g:neosolarized_contrast = "high"
 let g:neosolarized_termtrans= 1
 runtime ./colors/NeoSolarized.vim
 colorscheme neosolarized
+
+let g:flutter_show_log_on_run = "tab"

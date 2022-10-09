@@ -222,6 +222,9 @@ require'lspconfig'.tsserver.setup {
 require'lspconfig'.csharp_ls.setup {
   on_attach = on_attach
 }
+require'lspconfig'.dartls.setup {
+  on_attach = on_attach
+}
 require'lspconfig'.tailwindcss.setup{}
 require'lspconfig'.pylsp.setup{
   on_attach = on_attach,
