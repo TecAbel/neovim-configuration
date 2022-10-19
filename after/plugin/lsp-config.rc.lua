@@ -226,23 +226,24 @@ require'lspconfig'.dartls.setup {
   on_attach = on_attach
 }
 require'lspconfig'.tailwindcss.setup{}
-require'lspconfig'.pylsp.setup{
-  on_attach = on_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = {'W391'},
-          maxLineLength = 79
-        },
-        black = {
-          ignore = {'E203'},
-          maxLineLength = 88
-        }
-      }
-    }
-  }
-}
+lspconfig.pyright.setup{}
+-- require'lspconfig'.pylsp.setup{
+--   on_attach = on_attach,
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = {
+--           ignore = {'W391'},
+--           maxLineLength = 79
+--         },
+--         black = {
+--           ignore = {'E203'},
+--           maxLineLength = 88
+--         }
+--       }
+--     }
+--   }
+-- }
 
 -- require'lspconfig'.angularls.setup{}
 -- require'lspconfig'.tsserver.setup{
@@ -258,6 +259,6 @@ require'lspconfig'.pylsp.setup{
     -- }
 -- require'lspconfig'.eslint.setup{}
 -- require'lspconfig'.html.setup{}
--- require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.sumneko_lua.setup{}
 -- require'lspconfig'.vimls.setup{}
 
