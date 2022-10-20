@@ -1,3 +1,4 @@
+# if using wsl run `wsl --set-version Ubuntu 1`
 syntax on
 
 syntime on
@@ -11,7 +12,7 @@ set numberwidth=1
 set ignorecase
 set nohlsearch
 set nocompatible
-set clipboard=unnamedplus
+set clipboard=unnamed
 set encoding=UTF-8
 set hidden
 set nobackup
