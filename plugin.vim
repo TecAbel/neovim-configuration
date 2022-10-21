@@ -13,6 +13,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tjdevries/colorbuddy.nvim'
 Plug 'svrana/neosolarized.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 " Plug 'nvim-treesitter/nvim-treesitter-angular'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

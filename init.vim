@@ -1,4 +1,4 @@
-# if using wsl run `wsl --set-version Ubuntu 1`
+" if using wsl run wsl --set-version Ubuntu 1
 syntax on
 
 syntime on
