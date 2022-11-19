@@ -107,3 +107,5 @@ runtime ./colors/NeoSolarized.vim
 colorscheme neosolarized
 
 let g:flutter_show_log_on_run = "tab"
+
+syntax on

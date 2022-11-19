@@ -183,7 +183,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 --Enable (broadcasting) snippet capability for completion
 local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
 local cwd = vim.fn.getcwd()
-local cmd = {"ngserver.cmd", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
+local cmd = {"ngserver", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
 cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require'lspconfig'.cssls.setup {
@@ -245,7 +245,10 @@ lspconfig.pyright.setup{}
 --   }
 -- }
 
--- require'lspconfig'.angularls.setup{}
+require'lspconfig'.angularls.setup{
+  on_attach = on_attach,
+  cmd = cmd
+}
 -- require'lspconfig'.tsserver.setup{
 --   on_attach = on_attach
 -- }
