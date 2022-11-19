@@ -10,6 +10,7 @@ nnoremap <Leader>ff :Ag<CR>
 " Using Lua functions telescope
 " nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files() hidden=true<cr>
 nnoremap <leader>gf <cmd>Telescope find_files <cr>
+:nmap <space>ll <Cmd>CocCommand explorer<CR>
 imap <Esc> <C-c>
 
 nnoremap <leader>di <cmd>Telescope diagnostics<cr>
