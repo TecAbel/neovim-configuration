@@ -11,7 +11,7 @@ Plug 'numToStr/Comment.nvim'
 " Plug 'morhetz/gruvbox' 
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tjdevries/colorbuddy.nvim'
-Plug 'svrana/neosolarized.nvim'
+" Plug 'svrana/neosolarized.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'curist/vim-angular-template'

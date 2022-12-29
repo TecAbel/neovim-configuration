@@ -31,7 +31,7 @@ nnoremap <Leader>q :q<CR>
 "quick comma
 nnoremap <Leader>, $a,<Esc>
 nnoremap <Leader>; $a;<Esc>
-nmap <Leader><Leader>s <Plug>(easymotion-s2)
+nmap s <Plug>(easymotion-s2)
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 " -1 for jumping backwards.
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
@@ -53,6 +53,8 @@ nnoremap ge <cmd>Lspsaga show_line_diagnostics <cr>
 " buffer navigation and deletion
 nmap ;da :%bd <bar> e# <cr>
 nmap ;dd :bd <cr>
+" git blame
+nnoremap <leader>gb <cmd>:Git blame <cr>
 
 " imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 " let g:copilot_no_tab_map = v:true

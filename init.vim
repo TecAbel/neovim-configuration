@@ -12,7 +12,7 @@ set numberwidth=1
 set ignorecase
 set nohlsearch
 set nocompatible
-set clipboard=unnamed
+set clipboard=unnamedplus
 set encoding=UTF-8
 set hidden
 set nobackup
@@ -49,14 +49,15 @@ lua require('Comment').setup()
   set winblend=0
   set wildoptions=pum
   set pumblend=5
-  set background=dark
+  " set background=dark
   " Use NeoSolarized
-  let g:neosolarized_contrast = "high"
-  let g:neosolarized_termtrans= 1
+  " let g:neosolarized_contrast = "high"
+  " let g:neosolarized_termtrans= 1
   " runtime ./colors/NeoSolarized.vim
-  colorscheme neosolarized
-  " let g:dracula_italic = 0
   " colorscheme dracula
+  let g:dracula_italic = 0
+  let g:dracula_colorterm = 0
+  colorscheme dracula
   " hi Normal guibg=NONE ctermbg=NONE
 " end set theme
 
@@ -103,9 +104,7 @@ EOF
 " Use NeoSolarized
 let g:neosolarized_contrast = "high"
 let g:neosolarized_termtrans= 1
-runtime ./colors/NeoSolarized.vim
-colorscheme neosolarized
-
+" runtime ./colors/NeoSolarized.vim
+" colorscheme dracula
 let g:flutter_show_log_on_run = "tab"
-
 syntax on
