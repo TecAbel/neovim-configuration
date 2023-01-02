@@ -49,18 +49,23 @@ lua require('Comment').setup()
   set winblend=0
   set wildoptions=pum
   set pumblend=5
+  " for gruvbox
   " set background=dark
+  set background=dark " or light
+  colorscheme gruvbox
+  " for NeoSolarized
   " Use NeoSolarized
   " let g:neosolarized_contrast = "high"
   " let g:neosolarized_termtrans= 1
   " runtime ./colors/NeoSolarized.vim
+  " colorscheme NeoSolarized
+  "
+  " for dracula
+  " let g:dracula_italic = 0
+  " let g:dracula_colorterm = 0
   " colorscheme dracula
-  let g:dracula_italic = 0
-  let g:dracula_colorterm = 0
-  colorscheme dracula
   " hi Normal guibg=NONE ctermbg=NONE
 " end set theme
-
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/'] 
 
 

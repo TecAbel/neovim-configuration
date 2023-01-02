@@ -8,7 +8,8 @@ call plug#begin()
 Plug 'numToStr/Comment.nvim'
 
 " for better colors
-" Plug 'morhetz/gruvbox' 
+Plug 'xiyaowong/nvim-transparent'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tjdevries/colorbuddy.nvim'
 " Plug 'svrana/neosolarized.nvim'
