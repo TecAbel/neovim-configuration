@@ -74,7 +74,7 @@ Plug 'dense-analysis/ale'
 " icons
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-
+Plug 'danilamihailov/beacon.nvim'
 " performance
 Plug 'lewis6991/impatient.nvim'
 " flutter
