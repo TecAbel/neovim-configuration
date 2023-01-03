@@ -112,4 +112,5 @@ let g:neosolarized_termtrans= 1
 " runtime ./colors/NeoSolarized.vim
 " colorscheme dracula
 let g:flutter_show_log_on_run = "tab"
+let g:rainbow_active = 1
 syntax on
