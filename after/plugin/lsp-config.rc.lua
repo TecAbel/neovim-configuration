@@ -227,6 +227,7 @@ require'lspconfig'.dartls.setup {
 }
 require'lspconfig'.tailwindcss.setup{}
 lspconfig.pyright.setup{}
+-- lspconfig.prismals.setup{}
 -- require'lspconfig'.pylsp.setup{
 --   on_attach = on_attach,
 --   settings = {

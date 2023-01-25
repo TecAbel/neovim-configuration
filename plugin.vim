@@ -46,12 +46,11 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'python', 'typescriptreact', 'lua', 'vim', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 " status line
 Plug 'nvim-lualine/lualine.nvim'
- 
 " git line
 Plug 'lewis6991/gitsigns.nvim'
 " for project open
 Plug 'mhinz/vim-startify'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 "css colors
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-fugitive'
@@ -70,7 +69,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind.nvim'
 Plug 'glepnir/lspsaga.nvim'
-
 " on save
 Plug 'dense-analysis/ale'
 " icons
