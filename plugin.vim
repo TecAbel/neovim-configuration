@@ -19,7 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'curist/vim-angular-template'
 " Plug 'nvim-treesitter/nvim-treesitter-angular'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 
 " closetag
 Plug 'alvan/vim-closetag'
@@ -69,6 +69,9 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind.nvim'
 Plug 'glepnir/lspsaga.nvim'
+" for snippets
+Plug 'rafamadriz/friendly-snippets'
+"
 " on save
 Plug 'dense-analysis/ale'
 " icons
