@@ -19,7 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'curist/vim-angular-template'
 " Plug 'nvim-treesitter/nvim-treesitter-angular'
 
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " closetag
 Plug 'alvan/vim-closetag'
