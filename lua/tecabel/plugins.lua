@@ -14,7 +14,7 @@ packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp' 
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'hrsh7th/cmp-buffer'
@@ -23,6 +23,7 @@ packer.startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind.nvim'
   use 'glepnir/lspsaga.nvim'
+  use 'rafamadriz/friendly-snippets'
 
   -- flutter
   use 'dart-lang/dart-vim-plugin'
@@ -45,7 +46,7 @@ packer.startup(function(use)
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use 'danilamihailov/beacon.nvim'
   use 'mhinz/vim-startify'
-  
+
   -- colors
   use 'ap/vim-css-color'
   use 'tpope/vim-fugitive'

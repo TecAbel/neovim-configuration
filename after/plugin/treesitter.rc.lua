@@ -3,7 +3,20 @@
 --
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "tsx","javascript", "lua", "typescript", "html", "json", "comment", "vim"},
+  ensure_installed = { 
+    "tsx",
+    "javascript",
+    "lua",
+    "typescript",
+    "html",
+    "json",
+    "comment",
+    "vim",
+    "markdown_inline",
+    "markdown",
+    "dart",
+    "c_sharp"
+  },
   autotag = {
     enable = true
   },
