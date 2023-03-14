@@ -47,7 +47,12 @@ packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
 
   -- utils
-  use 'numToStr/Comment.nvim'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({})
+    end
+  }
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'neoclide/coc.nvim', branch = 'release' }
   use 'alvan/vim-closetag'
