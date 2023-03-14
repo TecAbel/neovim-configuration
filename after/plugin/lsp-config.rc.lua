@@ -19,7 +19,7 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
 end)
 -- Mappings.
-local bufopts = { noremap=true, silent=true }
+local bufopts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   -- formatting
   vim.api.nvim_command [[augroup Format]]
@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 -- cmp vim
@@ -86,7 +86,7 @@ cmp.setup {
   },
   performance = {
     trigger_debounce_time = 500
-  }, 
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -113,7 +113,6 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -134,11 +133,10 @@ cmp.setup {
     format = lspkind.cmp_format({
       with_text = false,
       mode = 'symbol_text', -- show only symbol annotations symbol_text
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-
+      maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function (entry, vim_item)
+      before = function(entry, vim_item)
         vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         return vim_item
       end
@@ -183,10 +181,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 --Enable (broadcasting) snippet capability for completion
 local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
 local cwd = vim.fn.getcwd()
-local cmd = {"ngserver", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
+local cmd = { "ngserver", "--stdio", "--tsProbeLocations", cwd, "--ngProbeLocations", cwd }
 cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.cssls.setup {
+require 'lspconfig'.cssls.setup {
   capabilities = cssCapabilities,
   settings = {
     css = {
@@ -205,12 +203,12 @@ require'lspconfig'.cssls.setup {
 local function organize_imports()
   local params = {
     command = "_typescript.organizeImports",
-    arguments = {vim.api.nvim_buf_get_name(0)},
+    arguments = { vim.api.nvim_buf_get_name(0) },
     title = ""
   }
   vim.lsp.buf.execute_command(params)
 end
-require'lspconfig'.tsserver.setup {
+require 'lspconfig'.tsserver.setup {
   on_attach = on_attach,
   commands = {
     OrganizeImports = {
@@ -219,15 +217,15 @@ require'lspconfig'.tsserver.setup {
     }
   }
 }
-require'lspconfig'.csharp_ls.setup {
+require 'lspconfig'.csharp_ls.setup {
   on_attach = on_attach
 }
-require'lspconfig'.dartls.setup {
+require 'lspconfig'.dartls.setup {
   on_attach = on_attach
 }
-require'lspconfig'.tailwindcss.setup{}
-lspconfig.pyright.setup{}
-lspconfig.prismals.setup{}
+require 'lspconfig'.tailwindcss.setup {}
+lspconfig.pyright.setup {}
+lspconfig.prismals.setup {}
 -- require'lspconfig'.pylsp.setup{
 --   on_attach = on_attach,
 --   settings = {
@@ -246,7 +244,7 @@ lspconfig.prismals.setup{}
 --   }
 -- }
 
-require'lspconfig'.angularls.setup{
+require 'lspconfig'.angularls.setup {
   on_attach = on_attach,
   cmd = cmd
 }
@@ -254,15 +252,14 @@ require'lspconfig'.angularls.setup{
 --   on_attach = on_attach
 -- }
 -- require'lspconfig'.angularls.setup{
-  --   on_attach = on_attach,
-  --   cmd = cmd,
-  --   filetypes = { 'typescript', 'html' },
-  --   on_new_config = function(new_config,new_root_dir)
-    --     new_config.cmd = cmd
-    --   end,
-    -- }
+--   on_attach = on_attach,
+--   cmd = cmd,
+--   filetypes = { 'typescript', 'html' },
+--   on_new_config = function(new_config,new_root_dir)
+--     new_config.cmd = cmd
+--   end,
+-- }
 -- require'lspconfig'.eslint.setup{}
 -- require'lspconfig'.html.setup{}
-require'lspconfig'.lua_ls.setup{}
+require 'lspconfig'.lua_ls.setup {}
 -- require'lspconfig'.vimls.setup{}
-
