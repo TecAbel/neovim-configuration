@@ -44,6 +44,7 @@ packer.startup(function(use)
   use 'tpope/vim-surround'
   use { 'mg979/vim-visual-multi', branch = 'master' }
   use 'danilamihailov/beacon.nvim'
+  use 'mhinz/vim-startify'
   
   -- colors
   use 'ap/vim-css-color'

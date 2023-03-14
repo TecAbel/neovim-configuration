@@ -1,5 +1,5 @@
-require('TecAbel.base')
-require('TecAbel.plugins')
-require('TecAbel.maps')
+require('tecabel.plugins')
+require('tecabel.maps')
+require('tecabel.base')
 require('test')
 
