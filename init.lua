@@ -1,4 +1,5 @@
-require('tecabel.plugins')
-require('tecabel.maps')
 require('tecabel.base')
+require('tecabel.maps')
+require('impatient')
+require('tecabel.plugins')
 

@@ -8,6 +8,8 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
+  -- performance
+  use 'lewis6991/impatient.nvim'
   -- for lsp
   use 'williamboman/nvim-lsp-installer'
   use 'williamboman/mason.nvim'
