@@ -1,4 +1,6 @@
 
+vim.cmd([[
+
 " surround
 if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
   nmap ds  <Plug>Dsurround
@@ -18,3 +20,4 @@ if !exists("g:surround_no_mappings") || ! g:surround_no_mappings
     imap      <C-G>S <Plug>ISurround
   endif
 endif
+]])

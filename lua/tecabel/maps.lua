@@ -20,14 +20,19 @@ keymap.set('n', 'ee', '<cmd>Startify <cr>', opts)
 keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
 keymap.set('n', '<leader>di', '<cmd>Telescope diagnostics<cr>', opts)
+keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
+keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
+keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
+keymap.set('n', '<leader>ll', '<Cmd>CocCommand explorer --toggle<CR>', opts)
+keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>', opts)
 
 
 -- Telescope
 local builtin = require('telescope.builtin')
-keymap.set('n', '<leader>gf', builtin.find_files, {})
-keymap.set('n', '<leader>fg', builtin.live_grep, {})
-keymap.set('n', '<leader>fb', builtin.buffers, {})
-keymap.set('n', '<leader>fh', builtin.help_tags, {})
+keymap.set('n', '<leader>gf', builtin.find_files, opts)
+keymap.set('n', '<leader>fg', builtin.live_grep, opts)
+keymap.set('n', '<leader>fb', builtin.buffers, opts)
+keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 
 -- vimscript
 vim.cmd([[

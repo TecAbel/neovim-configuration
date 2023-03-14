@@ -24,6 +24,7 @@ packer.startup(function(use)
   use 'onsails/lspkind.nvim'
   use 'glepnir/lspsaga.nvim'
   use 'rafamadriz/friendly-snippets'
+  use 'dense-analysis/ale'
 
   -- flutter
   use 'dart-lang/dart-vim-plugin'
@@ -56,8 +57,14 @@ packer.startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'kyazdani42/nvim-web-devicons'
 
+  -- git
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   -- lines
   use 'nvim-lualine/lualine.nvim'
   use 'akinsho/bufferline.nvim'
-
 end)
