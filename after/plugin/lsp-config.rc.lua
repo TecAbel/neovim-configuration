@@ -5,7 +5,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 lsp_installer.on_server_ready(function(server)
   local opts = {}
-  if server.name == "sumneko_lua" then
+  if server.name == "lua_ls" then
     opts = {
       settings = {
         Lua = {
@@ -263,6 +263,6 @@ require'lspconfig'.angularls.setup{
     -- }
 -- require'lspconfig'.eslint.setup{}
 -- require'lspconfig'.html.setup{}
-require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.lua_ls.setup{}
 -- require'lspconfig'.vimls.setup{}
 
