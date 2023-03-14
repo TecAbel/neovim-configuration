@@ -27,6 +27,15 @@ packer.startup(function(use)
   use 'glepnir/lspsaga.nvim'
   use 'rafamadriz/friendly-snippets'
   use 'dense-analysis/ale'
+  -- lsp database
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    requires = {
+      'tpope/vim-dadbod',
+      'tpope/vim-dotenv'
+    }
+  }
+  use 'kristijanhusak/vim-dadbod-completion'
 
   -- flutter
   use 'dart-lang/dart-vim-plugin'

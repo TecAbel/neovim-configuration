@@ -172,13 +172,7 @@ vim.cmd [[
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
---[[ lspconfig.emmet_ls.setup({
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-}) ]]
----- Setup lspconfig.
---Enable (broadcasting) snippet capability for completion
+---- Setup lspconfig languages
 local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
 local cwd = vim.fn.getcwd()
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", cwd, "--ngProbeLocations", cwd }
@@ -232,3 +226,8 @@ lspconfig.angularls.setup {
 }
 lspconfig.lua_ls.setup {}
 lspconfig.eslint.setup {}
+
+-- database completion
+vim.cmd([[
+autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+]])
