@@ -184,7 +184,7 @@ local cwd = vim.fn.getcwd()
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", cwd, "--ngProbeLocations", cwd }
 cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require 'lspconfig'.cssls.setup {
+lspconfig.cssls.setup {
   capabilities = cssCapabilities,
   settings = {
     css = {
@@ -208,7 +208,7 @@ local function organize_imports()
   }
   vim.lsp.buf.execute_command(params)
 end
-require 'lspconfig'.tsserver.setup {
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   commands = {
     OrganizeImports = {
@@ -217,49 +217,18 @@ require 'lspconfig'.tsserver.setup {
     }
   }
 }
-require 'lspconfig'.csharp_ls.setup {
+lspconfig.csharp_ls.setup {
   on_attach = on_attach
 }
-require 'lspconfig'.dartls.setup {
+lspconfig.dartls.setup {
   on_attach = on_attach
 }
-require 'lspconfig'.tailwindcss.setup {}
+lspconfig.tailwindcss.setup {}
 lspconfig.pyright.setup {}
 lspconfig.prismals.setup {}
--- require'lspconfig'.pylsp.setup{
---   on_attach = on_attach,
---   settings = {
---     pylsp = {
---       plugins = {
---         pycodestyle = {
---           ignore = {'W391'},
---           maxLineLength = 79
---         },
---         black = {
---           ignore = {'E203'},
---           maxLineLength = 88
---         }
---       }
---     }
---   }
--- }
-
-require 'lspconfig'.angularls.setup {
+lspconfig.angularls.setup {
   on_attach = on_attach,
   cmd = cmd
 }
--- require'lspconfig'.tsserver.setup{
---   on_attach = on_attach
--- }
--- require'lspconfig'.angularls.setup{
---   on_attach = on_attach,
---   cmd = cmd,
---   filetypes = { 'typescript', 'html' },
---   on_new_config = function(new_config,new_root_dir)
---     new_config.cmd = cmd
---   end,
--- }
--- require'lspconfig'.eslint.setup{}
--- require'lspconfig'.html.setup{}
-require 'lspconfig'.lua_ls.setup {}
--- require'lspconfig'.vimls.setup{}
+lspconfig.lua_ls.setup {}
+lspconfig.eslint.setup {}
