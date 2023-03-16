@@ -110,7 +110,44 @@ require('lazy').setup({
   -- lines
   'nvim-lualine/lualine.nvim',
   'akinsho/bufferline.nvim',
-}, {})
+}, {
+  root = vim.fn.stdpath("data") .. "/lazy",                 -- directory where plugins will be installed
+  lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
+  install = {
+    -- install missing plugins on startup. This doesn't increase startup time.
+    missing = true,
+  },
+  checker = {
+    -- automatically check for plugin updates
+    enabled = true,
+    concurrency = nil, ---@type number? set to 1 to check for updates very slowly
+    notify = true, -- get a notification when new updates are found
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true, -- reset the package path to improve startup time
+    rtp = {
+      reset = true,        -- reset the runtime path to $VIMRUNTIME and your config directory
+      ---@type string[]
+      paths = {},          -- add any custom paths here that you want to includes in the rtp
+      ---@type string[] list any plugins you want to disable here
+      disabled_plugins = {
+        -- "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+
+        -- "tarPlugin",
+        -- "tohtml",
+        -- "tutor",
+        -- "zipPlugin",
+      },
+    },
+  },
+  state = vim.fn.stdpath("state") .. "/lazy/state.json", -- state info for checker and other things
+})
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox ]])
