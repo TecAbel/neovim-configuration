@@ -1,26 +1,19 @@
-local lsp_installer = require("nvim-lsp-installer")
+require('mason').setup {}
 local luasnip = require("luasnip")
 local lspconfig = require('lspconfig')
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == "lua_ls" then
-    opts = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim', 'use' }
-          },
-        }
-      }
-    }
-  end
-  server:setup(opts)
-end)
 -- Mappings.
 local bufopts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
   -- formatting
   vim.api.nvim_command [[augroup Format]]
   vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -41,8 +34,10 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
+
 
 -- cmp vim
 local cmp = require 'cmp'
@@ -144,90 +139,43 @@ cmp.setup {
   }
 }
 
-vim.cmd [[
-  set completeopt=menuone,noinsert,noselect
-  highlight! default link CmpItemKind CmpItemMenuDefault
- " highlight! Pmenu guibg=#002b36 guifg=#002b36
-  highlight! CmpItemKindText guibg=#fffff guifg=#002b36
-
-  " gray
-  highlight! CmpItemAbbrDeprecated guibg=NONE guifg=#2d2d30
-
-  " blue
-  highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-  highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-  " light blue
-  highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-  " pink
-  highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-  highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-  " front
-  highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-]]
-
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ---- Setup lspconfig languages
-local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
-local cwd = vim.fn.getcwd()
-local cmd = { "ngserver", "--stdio", "--tsProbeLocations", cwd, "--ngProbeLocations", cwd }
-cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
-
-lspconfig.cssls.setup {
-  capabilities = cssCapabilities,
-  settings = {
-    css = {
-      validate = true
-    },
-    less = {
-      validate = true
-    },
-    scss = {
-      validate = true
-    }
-  },
-  single_file_support = true
-
+local mason_lspconfig = require("mason-lspconfig")
+local servers = {
+  cssls = {},
+  tsserver = {},
+  tailwindcss = {},
+  pyright = {},
+  angularls = {},
+  lua_ls = {},
+  eslint = {}
 }
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = ""
-  }
-  vim.lsp.buf.execute_command(params)
-end
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize Imports"
-    }
-  }
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+    }
+  end,
+}
+
+-- only with nvim-lsp-installer
 lspconfig.csharp_ls.setup {
   on_attach = on_attach
 }
 lspconfig.dartls.setup {
   on_attach = on_attach
 }
-lspconfig.tailwindcss.setup {}
-lspconfig.pyright.setup {}
 lspconfig.prismals.setup {}
-lspconfig.angularls.setup {
-  on_attach = on_attach,
-  cmd = cmd
-}
-lspconfig.lua_ls.setup {}
-lspconfig.eslint.setup {}
-
--- database completion
 vim.cmd([[
 autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]])

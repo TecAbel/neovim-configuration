@@ -1,6 +1,10 @@
+require('tecabel.plugins')
 require('tecabel.base')
 require('tecabel.maps')
 require('impatient')
-require("mason").setup()
-require('tecabel.plugins')
-
+require('tecabel.lsp-config')
+require('tecabel.telescope')
+require('tecabel.treesitter')
+require('tecabel.bufferline')
+require('tecabel.gruvbox')
+-- require('tecabel.treesitter-context')

@@ -1,6 +1,8 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 keymap.set('n', '<Leader>o', ' <cmd>OR <CR>', opts)
 keymap.set('n', '<Leader>p', ' <cmd>gg=G', opts)
@@ -14,8 +16,8 @@ keymap.set('n', ';dd', ' <cmd>bd <cr>', opts)
 keymap.set('n', 'gd', ' <cmd>Lspsaga lsp_finder <cr> ')
 keymap.set('n', 'gp', ' <cmd>Lspsaga peek_definition <cr>')
 keymap.set('n', 'ge', ' <cmd>Lspsaga show_line_diagnostics <cr>')
-keymap.set({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
-keymap.set({"n"}, "K", "<cmd>Lspsaga hover_doc<CR>")
+keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+keymap.set({ "n" }, "K", "<cmd>Lspsaga hover_doc<CR>")
 keymap.set("n", "rn", "<cmd>Lspsaga rename<CR>")
 keymap.set('n', 'ee', '<cmd>Startify <cr>', opts)
 keymap.set('n', 'gr', vim.lsp.buf.references, opts)
@@ -32,7 +34,8 @@ keymap.set('n', '<leader>db', '<cmd>DBUI<cr>', opts)
 
 -- Telescope
 local builtin = require('telescope.builtin')
-keymap.set('n', '<leader>gf', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <cr>', opts)
+keymap.set('n', '<leader>gf', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <cr>',
+  opts)
 keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 keymap.set('n', '<leader>fb', builtin.buffers, opts)
 keymap.set('n', '<leader>fh', builtin.help_tags, opts)
