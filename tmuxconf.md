@@ -1,3 +1,4 @@
+# save on .config/tmux/tmux.conf
 set -g default-terminal "tmux-256color"
 # set -g default-terminal "xterm-256color"
 set -ga terminal-overrides ",*256col*:Tc"
