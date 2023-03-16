@@ -1,26 +1,19 @@
-local lsp_installer = require("nvim-lsp-installer")
+require('mason').setup {}
 local luasnip = require("luasnip")
 local lspconfig = require('lspconfig')
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == "sumneko_lua" then
-    opts = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim', 'use' }
-          },
-        }
-      }
-    }
-  end
-  server:setup(opts)
-end)
 -- Mappings.
-local bufopts = { noremap=true, silent=true }
+local bufopts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
   -- formatting
   vim.api.nvim_command [[augroup Format]]
   vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -41,8 +34,10 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
+
 
 -- cmp vim
 local cmp = require 'cmp'
@@ -86,7 +81,7 @@ cmp.setup {
   },
   performance = {
     trigger_debounce_time = 500
-  }, 
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -113,7 +108,6 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -134,11 +128,10 @@ cmp.setup {
     format = lspkind.cmp_format({
       with_text = false,
       mode = 'symbol_text', -- show only symbol annotations symbol_text
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-
+      maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-      before = function (entry, vim_item)
+      before = function(entry, vim_item)
         vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         return vim_item
       end
@@ -146,123 +139,43 @@ cmp.setup {
   }
 }
 
-vim.cmd [[
-  set completeopt=menuone,noinsert,noselect
-  highlight! default link CmpItemKind CmpItemMenuDefault
- " highlight! Pmenu guibg=#002b36 guifg=#002b36
-  highlight! CmpItemKindText guibg=#fffff guifg=#002b36
-
-  " gray
-  highlight! CmpItemAbbrDeprecated guibg=NONE guifg=#2d2d30
-
-  " blue
-  highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-  highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-  " light blue
-  highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-  highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-  " pink
-  highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-  highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-  " front
-  highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-  highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-]]
-
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
---[[ lspconfig.emmet_ls.setup({
-  -- on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
-}) ]]
----- Setup lspconfig.
---Enable (broadcasting) snippet capability for completion
-local cssCapabilities = vim.lsp.protocol.make_client_capabilities()
-local cwd = vim.fn.getcwd()
-local cmd = {"ngserver", "--stdio", "--tsProbeLocations", cwd , "--ngProbeLocations", cwd}
-cssCapabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require'lspconfig'.cssls.setup {
-  capabilities = cssCapabilities,
-  settings = {
-    css = {
-      validate = true
-    },
-    less = {
-      validate = true
-    },
-    scss = {
-      validate = true
-    }
-  },
-  single_file_support = true
-
+---- Setup lspconfig languages
+local mason_lspconfig = require("mason-lspconfig")
+local servers = {
+  cssls = {},
+  tsserver = {},
+  tailwindcss = {},
+  pyright = {},
+  angularls = {},
+  lua_ls = {},
+  eslint = {}
 }
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = {vim.api.nvim_buf_get_name(0)},
-    title = ""
-  }
-  vim.lsp.buf.execute_command(params)
-end
-require'lspconfig'.tsserver.setup {
-  on_attach = on_attach,
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize Imports"
-    }
-  }
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
-require'lspconfig'.csharp_ls.setup {
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+    }
+  end,
+}
+
+-- only with nvim-lsp-installer
+lspconfig.csharp_ls.setup {
   on_attach = on_attach
 }
-require'lspconfig'.dartls.setup {
+lspconfig.dartls.setup {
   on_attach = on_attach
 }
-require'lspconfig'.tailwindcss.setup{}
-lspconfig.pyright.setup{}
-lspconfig.prismals.setup{}
--- require'lspconfig'.pylsp.setup{
---   on_attach = on_attach,
---   settings = {
---     pylsp = {
---       plugins = {
---         pycodestyle = {
---           ignore = {'W391'},
---           maxLineLength = 79
---         },
---         black = {
---           ignore = {'E203'},
---           maxLineLength = 88
---         }
---       }
---     }
---   }
--- }
-
-require'lspconfig'.angularls.setup{
-  on_attach = on_attach,
-  cmd = cmd
-}
--- require'lspconfig'.tsserver.setup{
---   on_attach = on_attach
--- }
--- require'lspconfig'.angularls.setup{
-  --   on_attach = on_attach,
-  --   cmd = cmd,
-  --   filetypes = { 'typescript', 'html' },
-  --   on_new_config = function(new_config,new_root_dir)
-    --     new_config.cmd = cmd
-    --   end,
-    -- }
--- require'lspconfig'.eslint.setup{}
--- require'lspconfig'.html.setup{}
-require'lspconfig'.sumneko_lua.setup{}
--- require'lspconfig'.vimls.setup{}
-
+lspconfig.prismals.setup {}
+vim.cmd([[
+autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+]])

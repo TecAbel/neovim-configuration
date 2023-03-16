@@ -1,29 +1,29 @@
-
 local status, bufferline = pcall(require, 'bufferline')
 bufferline.setup({
   options = {
     mode = "buffers",
+    -- separator_style = 'padded_slant',
     separator_style = 'slant',
-    always_show_bufferline = false,
+    -- always_show_bufferline = false,
     show_tab_indicators = true,
     show_buffer_close_icons = false,
-    show_close_icon = false,
+    -- show_close_icon = false,
     color_icons = true,
     -- indicator = {
     --   style = 'underline'
     -- }
   },
-  --[[ highlights = {
+  highlights = {
     separator = {
-      fg = '#073642',
-      bg = '#002b36',
+      fg = '#1f211f',
+      -- bg = '#1f211f',
     },
     separator_selected = {
-      fg = '#073642',
+      fg = '#1f211f',
     },
-    background = {
-      fg = '#657b83',
-      bg = '#002b36'
+    --[[background = {
+      fg = '#002b36',
+      bg = '#1f211f'
     },
     info_selected = {
       fg = '#fdf6e3',
@@ -37,8 +37,8 @@ bufferline.setup({
     },
     fill = {
       bg = '#073642'
-    }
-  }, ]]
+    } ]]
+  },
 })
 
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
