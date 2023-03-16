@@ -21,6 +21,7 @@ require('lazy').setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'jose-elias-alvarez/null-ls.nvim',
+  'MunifTanjim/prettier.nvim',
   'neovim/nvim-lspconfig',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
@@ -32,7 +33,7 @@ require('lazy').setup({
   'onsails/lspkind.nvim',
   'glepnir/lspsaga.nvim',
   'rafamadriz/friendly-snippets',
-  'dense-analysis/ale',
+  -- 'dense-analysis/ale',
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -67,9 +68,12 @@ require('lazy').setup({
   },
   'neoclide/coc.nvim',
   'alvan/vim-closetag',
-  { 'windwp/nvim-autopairs', config = function ()
-    require('nvim-autopairs').setup {}
-  end },
+  {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup {}
+    end
+  },
   'easymotion/vim-easymotion',
   'christoomey/vim-tmux-navigator',
   'tpope/vim-surround',
