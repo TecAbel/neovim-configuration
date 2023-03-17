@@ -15,7 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
-
   -- performance
   'lewis6991/impatient.nvim',
   -- for lsp
@@ -33,7 +32,11 @@ require('lazy').setup({
   'hrsh7th/cmp-cmdline',
   'L3MON4D3/LuaSnip',
   'onsails/lspkind.nvim',
-  'glepnir/lspsaga.nvim',
+  {
+    'glepnir/lspsaga.nvim',
+    event = "BufRead",
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  },
   'rafamadriz/friendly-snippets',
   -- 'dense-analysis/ale',
   -- lsp database
@@ -45,16 +48,13 @@ require('lazy').setup({
       'kristijanhusak/vim-dadbod-completion',
     }
   },
-
   -- flutter
   'dart-lang/dart-vim-plugin',
   'thosakwe/vim-flutter',
-
   -- telescope
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-file-browser.nvim',
-
   -- utils
   {
     'numToStr/Comment.nvim', opts = {}
@@ -82,7 +82,6 @@ require('lazy').setup({
   'mg979/vim-visual-multi',
   'danilamihailov/beacon.nvim',
   'mhinz/vim-startify',
-
   -- colors
   'ap/vim-css-color',
   'tpope/vim-fugitive',
@@ -98,8 +97,7 @@ require('lazy').setup({
     end
   },
   -- 'nvim-treesitter/nvim-treesitter-context',
-  'kyazdani42/nvim-web-devicons',
-
+  -- 'kyazdani42/nvim-web-devicons',
   -- git
   {
     'lewis6991/gitsigns.nvim',

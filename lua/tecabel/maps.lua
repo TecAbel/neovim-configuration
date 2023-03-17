@@ -18,7 +18,7 @@ keymap.set('n', 'gp', ' <cmd>Lspsaga peek_definition <cr>')
 keymap.set('n', 'ge', ' <cmd>Lspsaga show_line_diagnostics <cr>')
 keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 keymap.set({ "n" }, "K", "<cmd>Lspsaga hover_doc<CR>")
-keymap.set("n", "rn", "<cmd>Lspsaga rename<CR>")
+keymap.set("n", "rn", "<cmd>Lspsaga rename ++project<CR>")
 keymap.set('n', 'ee', '<cmd>Startify <cr>', opts)
 keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
@@ -51,6 +51,8 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 command! -nargs=0 OR   :silent call CocAction('runCommand', 'editor.action.organizeImport')
 nnoremap <Leader>, $a,<Esc>
 nnoremap <Leader>; $a;<Esc>
+nnoremap ;dd :bd<cr>
+nnoremap ;da %bd <bar> e# <cr>'
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js, *.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.tsx'
