@@ -1,5 +1,3 @@
-vim.cmd("autocmd!")
-
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -28,8 +26,6 @@ vim.opt.formatoptions:append { 'r' }
 
 vim.cmd([[ set nohlsearch ]])
 vim.cmd([[
-  " set background=dark " or light
-  colorscheme gruvbox
 
   let g:ale_fix_on_save = 1
   " Fix Python files with autopep8 and yapf.
@@ -48,6 +44,6 @@ vim.cmd([[
       \'typescript': ['prettier', 'eslint'],
       \'typescriptreact': ['prettier', 'eslint']
       \}
-  ]])
+]])
 
 require('Comment').setup({})

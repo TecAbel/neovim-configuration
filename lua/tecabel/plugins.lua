@@ -14,7 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require('lazy').setup({
+require("lazy").setup({
   -- performance
   'lewis6991/impatient.nvim',
   -- for lsp
@@ -146,6 +146,3 @@ require('lazy').setup({
   },
   state = vim.fn.stdpath("state") .. "/lazy/state.json", -- state info for checker and other things
 })
-
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox ]])
