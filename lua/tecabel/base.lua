@@ -24,7 +24,9 @@ vim.opt.wildignore:append { '*/node_modules/*' }
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
 
-vim.cmd([[ set nohlsearch ]])
+vim.cmd([[
+set nohlsearch
+]])
 vim.cmd([[
 
   let g:ale_fix_on_save = 1
@@ -40,9 +42,9 @@ vim.cmd([[
 
   let b:ale_linters = {
       \'python': ['flake8'],
-      \'javascript': ['prettier', 'eslint'],
-      \'typescript': ['prettier', 'eslint'],
-      \'typescriptreact': ['prettier', 'eslint']
+      \'javascript': ['prettier', ],
+      \'typescript': ['prettier', ],
+      \'typescriptreact': ['prettier', ]
       \}
 ]])
 

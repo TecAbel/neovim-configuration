@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 keymap.set('n', '<Leader>o', ' <cmd>OR <CR>', opts)
-keymap.set('n', '<Leader>p', ' <cmd>gg=G', opts)
+keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)
 keymap.set('n', '<Leader>w', ' <cmd>w<CR>', opts)
 keymap.set('n', '<Leader>q', ' <cmd>q<CR>', opts)
 -- keymap.set('n', '<Leader>,', ' $a,<Esc>', opts)

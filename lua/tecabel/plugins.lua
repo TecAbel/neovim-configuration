@@ -38,7 +38,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
   'rafamadriz/friendly-snippets',
-  -- 'dense-analysis/ale',
+  'dense-analysis/ale',
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',

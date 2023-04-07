@@ -1,3 +1,6 @@
+vim.cmd([[
+:hi normal guibg=000000
+]])
 require('tecabel.plugins')
 require('tecabel.base')
 require('tecabel.maps')
