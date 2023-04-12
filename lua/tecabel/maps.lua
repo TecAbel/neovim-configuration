@@ -11,11 +11,13 @@ keymap.set('n', '<Leader>q', ' <cmd>q<CR>', opts)
 -- keymap.set('n', '<Leader>,', ' $a,<Esc>', opts)
 -- keymap.set('n', '<Leader>;', ' $a;<Esc>', opts)
 keymap.set('n', 's', ' <Plug>(easymotion-s2)', opts)
-keymap.set('n', ';da', ' <cmd>%bd <bar> e# <cr>', opts)
+-- keymap.set('n', ';da', ' <cmd>bufdo bd<cr>', opts)
+keymap.set('n', '<leader>rl', '<cmd>edit!<cr>')
 keymap.set('n', ';dd', ' <cmd>bd <cr>', opts)
-keymap.set('n', 'gd', ' <cmd>Lspsaga lsp_finder <cr> ')
-keymap.set('n', 'gp', ' <cmd>Lspsaga peek_definition <cr>')
-keymap.set('n', 'ge', ' <cmd>Lspsaga show_line_diagnostics <cr>')
+keymap.set('n', 'gd', ' <cmd>Lspsaga goto_definition<cr> ')
+keymap.set('n', '<leader>gt', ' <cmd>Lspsaga term_toggle<cr> ')
+keymap.set('n', 'gp', ' <cmd>Lspsaga peek_definition<cr>')
+keymap.set('n', 'ge', ' <cmd>Lspsaga show_line_diagnostics<cr>')
 keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 keymap.set({ "n" }, "K", "<cmd>Lspsaga hover_doc<CR>")
 keymap.set("n", "rn", "<cmd>Lspsaga rename ++project<CR>")
@@ -52,7 +54,7 @@ command! -nargs=0 OR   :silent call CocAction('runCommand', 'editor.action.organ
 nnoremap <Leader>, $a,<Esc>
 nnoremap <Leader>; $a;<Esc>
 nnoremap ;dd :bd<cr>
-nnoremap ;da %bd <bar> e# <cr>'
+nnoremap ;da :%bd <bar> e#<cr>'
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js, *.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.tsx'

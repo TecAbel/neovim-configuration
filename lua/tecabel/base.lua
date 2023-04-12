@@ -29,13 +29,13 @@ set nohlsearch
 ]])
 vim.cmd([[
 
-  let g:ale_fix_on_save = 1
   " Fix Python files with autopep8 and yapf.
   let b:ale_fixers = {
       \'python': ['black', 'isort'],
       \'javascript': ['prettier'],
       \'typescript': ['prettier'],
-      \'typescriptreact': ['prettier']
+      \'typescriptreact': ['prettier'],
+      \'html':['prettier']
       \}
 
   let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
@@ -46,6 +46,14 @@ vim.cmd([[
       \'typescript': ['prettier', ],
       \'typescriptreact': ['prettier', ]
       \}
+
+  let b:ale_linters = {
+      \'python': ['flake8'],
+      \'javascript': ['prettier', ],
+      \'typescript': ['prettier', ],
+      \'typescriptreact': ['prettier', ]
+      \}
+  let g:ale_fix_on_save = 1
 ]])
 
 require('Comment').setup({})

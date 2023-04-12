@@ -9,6 +9,8 @@ end
 -- IMPORTANT!: this is only a showcase of how you can set default options!
 telescope.setup {
   defaults = {
+    preview_cutoff = 1,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     file_ignore_patterns = { "node_modules", ".git" },
     mappings = {
       n = {
@@ -43,7 +45,7 @@ vim.keymap.set("n", "<space>n", function()
     respect_gitignore = true,
     hidden = true,
     grouped = true,
-    previewer = false,
+    previewer = true,
     initial_mode = "normal",
     layout_config = { height = 40 }
   })

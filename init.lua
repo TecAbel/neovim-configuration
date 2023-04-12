@@ -1,6 +1,3 @@
-vim.cmd([[
-:hi normal guibg=000000
-]])
 require('tecabel.plugins')
 require('tecabel.base')
 require('tecabel.maps')
@@ -11,4 +8,5 @@ require('tecabel.null')
 require('tecabel.telescope')
 require('tecabel.treesitter')
 require('tecabel.bufferline')
+vim.cmd([[ colorscheme gruvbox ]])
 -- require('tecabel.treesitter-context')

@@ -15,7 +15,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
   -- formatting
-  vim.cmd [[autocmd BufWritePre *.ts,*.js,*.json,*tsx,*.jsx,*.html,*.css lua vim.lsp.buf.format() ]]
+  -- vim.cmd [[autocmd BufWritePre *.ts,*.js,*.json,*tsx,*.jsx,*.html,*.css lua vim.lsp.buf.format() ]]
+  vim.cmd [[autocmd BufWritePre *.dart, *.cs lua vim.lsp.buf.format() ]]
   -- base keymaps
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
