@@ -27,7 +27,10 @@ telescope.setup {
     },
     live_grep = {
       theme = "dropdown"
-    }
+    },
+    diagnostics = {
+      theme = "dropdown"
+    },
   },
   extensions = {
     file_browser = {
