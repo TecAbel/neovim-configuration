@@ -16,8 +16,9 @@ local on_attach = function(client, bufnr)
   end
   -- formatting
   -- vim.cmd [[autocmd BufWritePre *.ts,*.js,*.json,*tsx,*.jsx,*.html,*.css lua vim.lsp.buf.format() ]]
-  vim.cmd [[autocmd BufWritePre *.dart, *.cs lua vim.lsp.buf.format() ]]
+  vim.cmd [[autocmd BufWritePre *.dart, *.cs, *.lua lua vim.lsp.buf.format() ]]
   -- base keymaps
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)

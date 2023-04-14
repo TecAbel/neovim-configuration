@@ -24,7 +24,7 @@ keymap.set("n", "rn", "<cmd>Lspsaga rename ++project<CR>")
 keymap.set('n', 'ee', '<cmd>Startify <cr>', opts)
 keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
-keymap.set('n', '<leader>di', '<cmd>Lspsaga diagnostic_jump_next<cr>', opts)
+keymap.set('n', '<leader>di', '<cmd>Telescope diagnostics<cr>', opts)
 keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
 keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
 keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
@@ -35,12 +35,13 @@ keymap.set('n', '<leader>db', '<cmd>DBUI<cr>', opts)
 
 
 -- Telescope
-local builtin = require('telescope.builtin')
+-- local builtin = require('telescope.builtin')
 keymap.set('n', '<leader>gf', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <cr>',
   opts)
-keymap.set('n', '<leader>fg', builtin.live_grep, opts)
-keymap.set('n', '<leader>fb', builtin.buffers, opts)
-keymap.set('n', '<leader>fh', builtin.help_tags, opts)
+keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep prompt_prefix=🔍 <cr>', opts)
+keymap.set('n', '<leader>fb', '<cmd>Telescope buffers prompt_prefix=🔍 <cr>', opts)
+keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags prompt_prefix=🔍 <cr>', opts)
+keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits prompt_prefix=🔍 <cr>', opts)
 
 -- vimscript
 vim.cmd([[

@@ -1,21 +1,32 @@
 local status, telescope = pcall(require, 'telescope')
 if (not status) then return end
-local actions = require'telescope.actions'
+local actions = require 'telescope.actions'
 
-local function telescope_buffer_dir()
-  return vim.fn.expand('%:p:h')
-end
+-- local function telescope_buffer_dir()
+--   return vim.fn.expand('%:p:h')
+-- end
 -- You don't need to set any of these options.
 -- IMPORTANT!: this is only a showcase of how you can set default options!
 telescope.setup {
   defaults = {
-    preview_cutoff = 1,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    layout_config = {
+      vertical = { width = 0.5 }
+    },
+    -- preview_cutoff = 1,
+    -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     file_ignore_patterns = { "node_modules", ".git" },
     mappings = {
       n = {
         ["q"] = actions.close
       }
+    }
+  },
+  pickers = {
+    find_files = {
+      theme = "dropdown"
+    },
+    live_grep = {
+      theme = "dropdown"
     }
   },
   extensions = {
