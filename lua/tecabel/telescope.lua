@@ -52,15 +52,15 @@ telescope.setup {
 -- you need to call load_extension, somewhere after setup function:
 telescope.load_extension "file_browser"
 
-vim.keymap.set("n", "<space>n", function()
-  telescope.extensions.file_browser.file_browser({
-    path = "%:p:h",
-    cwd = telescope_buffer_dir(),
-    respect_gitignore = true,
-    hidden = true,
-    grouped = true,
-    previewer = true,
-    initial_mode = "normal",
-    layout_config = { height = 40 }
-  })
-end)
+-- vim.keymap.set("n", "<space>n", function()
+--   telescope.extensions.file_browser.file_browser({
+--     path = "%:p:h",
+--     cwd = telescope.file_browser(),
+--     respect_gitignore = true,
+--     hidden = true,
+--     grouped = true,
+--     previewer = true,
+--     initial_mode = "normal",
+--     layout_config = { height = 40 }
+--   })
+-- end)
