@@ -86,6 +86,7 @@ require("lazy").setup({
   'ap/vim-css-color',
   'tpope/vim-fugitive',
   'ellisonleao/gruvbox.nvim',
+  { "catppuccin/nvim",   name = "catppuccin" },
   'xiyaowong/nvim-transparent',
   {
     'nvim-treesitter/nvim-treesitter',
