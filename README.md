@@ -1,7 +1,7 @@
 
 # TecAbel Neovim Configuration
-This is mi Neo vim configuration, feel free to use it, but chack maps.vim file for more details.
-Feel free to fork this repo and create your own config!
+This is my Neovim configuration, feel free to use it, but check [maps.lua](https://github.com/TecAbel/neovim-configuration/blob/stable/lua/tecabel/maps.lua) file for more details about how to use it.
+<p>Feel free to fork this repo and create your own config!<p>
 <p align="center">
   <img alt="saps" width="1024" src="https://res.cloudinary.com/tecabel/image/upload/v1682915850/Screenshot_2023-04-30_at_22.37.07_lriwrb.png" />
 <p/>
