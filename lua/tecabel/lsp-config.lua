@@ -154,6 +154,7 @@ local servers = {
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  automatic_installation = true
 }
 
 mason_lspconfig.setup_handlers {
@@ -167,9 +168,9 @@ mason_lspconfig.setup_handlers {
 }
 
 -- only with nvim-lsp-installer
-lspconfig.csharp_ls.setup {
-  on_attach = on_attach
-}
+-- lspconfig.csharp_ls.setup {
+--   on_attach = on_attach
+-- }
 lspconfig.dartls.setup {
   on_attach = on_attach
 }
