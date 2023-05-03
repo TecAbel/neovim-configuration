@@ -144,7 +144,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
   cssls = {},
-  tsserver = {},
+  -- tsserver = {},
   tailwindcss = {},
   pyright = {},
   angularls = {},
@@ -175,6 +175,12 @@ lspconfig.dartls.setup {
   on_attach = on_attach
 }
 lspconfig.prismals.setup {}
+lspconfig.tsserver.setup({
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+    end,
+})
 vim.cmd([[
 autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]])
