@@ -168,9 +168,9 @@ mason_lspconfig.setup_handlers {
 }
 
 -- only with nvim-lsp-installer
--- lspconfig.csharp_ls.setup {
---   on_attach = on_attach
--- }
+lspconfig.csharp_ls.setup {
+  on_attach = on_attach
+}
 lspconfig.dartls.setup {
   on_attach = on_attach
 }
