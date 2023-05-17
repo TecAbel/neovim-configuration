@@ -11,6 +11,7 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.csharpier,
+    null_ls.builtins.formatting.dart_format
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
