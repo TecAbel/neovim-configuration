@@ -1,7 +1,8 @@
 local status, bufferline = pcall(require, 'bufferline')
 bufferline.setup({
   options = {
-    mode = "buffers",
+    -- mode = "buffers",
+    mode = "tabs",
     -- separator_style = 'padded_slant',
     separator_style = 'slant',
     -- always_show_bufferline = false,

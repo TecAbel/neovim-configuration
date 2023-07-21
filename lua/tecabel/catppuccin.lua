@@ -4,9 +4,9 @@ require("catppuccin").setup({
     light = "frappe",
     dark = "mocha",
   },
-  transparent_background = true,
+  transparent_background = false,
   show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-  term_colors = false,
+  term_colors = true,
   dim_inactive = {
     enabled = false,
     shade = "dark",
@@ -14,14 +14,6 @@ require("catppuccin").setup({
   },
   no_italic = true, -- Force no italic
   no_bold = false,  -- Force no bold
-  integrations = {
-    cmp = true,
-    gitsigns = true,
-    nvimtree = true,
-    telescope = true,
-    notify = true,
-    mini = true,
-  },
   styles = {
     comments = { "italic" },
     conditionals = { "italic" },

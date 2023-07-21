@@ -33,7 +33,7 @@ require("lazy").setup({
   'L3MON4D3/LuaSnip',
   'onsails/lspkind.nvim',
   {
-    'glepnir/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim',
     event = "BufRead",
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
