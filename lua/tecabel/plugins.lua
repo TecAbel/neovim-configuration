@@ -22,6 +22,7 @@ require("lazy").setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'jose-elias-alvarez/null-ls.nvim',
+  'jose-elias-alvarez/typescript.nvim',
   'MunifTanjim/prettier.nvim',
   'neovim/nvim-lspconfig',
   'hrsh7th/nvim-cmp',
@@ -68,7 +69,7 @@ require("lazy").setup({
       -- show_trailing_blankline_indent = false,
     },
   },
-  { 'neoclide/coc.nvim', branch = "release" },
+  -- { 'neoclide/coc.nvim', branch = "release" },
   'alvan/vim-closetag',
   {
     'windwp/nvim-autopairs',
@@ -86,7 +87,7 @@ require("lazy").setup({
   'ap/vim-css-color',
   'tpope/vim-fugitive',
   'ellisonleao/gruvbox.nvim',
-  { "catppuccin/nvim",   name = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin" },
   'xiyaowong/nvim-transparent',
   {
     'nvim-treesitter/nvim-treesitter',

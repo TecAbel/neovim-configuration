@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-keymap.set('n', '<Leader>o', ' <cmd>OR <CR>', opts)
+keymap.set('n', '<Leader>o', ' <cmd>:TypescriptOrganizeImports <CR> <bar> <cmd>:TypescriptRemoveUnused <CR>', opts)
 keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)
 keymap.set('n', '<Leader>w', ' <cmd>w<CR>', opts)
 keymap.set('n', '<Leader>q', ' <cmd>q<CR>', opts)
@@ -52,8 +52,8 @@ imap <Esc> <C-c>
 nnoremap tg gT
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 OR   :silent call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+" command! -nargs=0 OR   :silent call CocAction('runCommand', 'editor.action.organizeImport')
 nnoremap <Leader>, $a,<Esc>
 nnoremap <Leader>; $a;<Esc>
 nnoremap ;dd :bd<cr>

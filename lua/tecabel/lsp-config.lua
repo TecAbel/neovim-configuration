@@ -175,11 +175,24 @@ lspconfig.dartls.setup {
   on_attach = on_attach
 }
 lspconfig.prismals.setup {}
-lspconfig.tsserver.setup({
+--[[ lspconfig.tsserver.setup({
     capabilities = capabilities,
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
     end,
+}) ]]
+require("typescript").setup({
+  disable_commands = false,   -- prevent the plugin from creating Vim commands
+  debug = false,              -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true,          -- fall back to standard LSP definition on failure
+  },
+  server = {                  -- pass options to lspconfig's setup method
+    on_attach = function(client)
+      client.resolved_capabilities.document_formatting = false
+    end,
+    capabilities = capabilities
+  },
 })
 vim.cmd([[
 autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
