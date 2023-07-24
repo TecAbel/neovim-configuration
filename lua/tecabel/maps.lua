@@ -57,7 +57,11 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>, $a,<Esc>
 nnoremap <Leader>; $a;<Esc>
 nnoremap ;dd :bd<cr>
-nnoremap ;da :%bd <bar> e#<cr>'
+nnoremap ;da :%bd <bar> e#<cr>
+" copy on clipboard filename
+nnoremap <Leader>yf :let @+ = expand("%:t")<cr>
+" copy on clipboard fullpath and filename
+nnoremap <Leader>yp :let @+ = expand("%")<cr>
 " autoclose-tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js, *.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.tsx'
