@@ -30,7 +30,7 @@ keymap.set('n', '<leader>n', '<cmd>Telescope file_browser path=%:p:h select_buff
 keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
 keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
 keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
-keymap.set('n', '<leader>ll', '<Cmd>CocCommand explorer --position right --toggle<CR>', opts)
+keymap.set('n', '<leader>ll', '<cmd>:Explore <cr>', opts)
 keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>', opts)
 -- fire database connections
 keymap.set('n', '<leader>db', '<cmd>DBUI<cr>', opts)
@@ -62,8 +62,11 @@ nnoremap ;da :%bd <bar> e#<cr>
 nnoremap <Leader>yf :let @+ = expand("%:t")<cr>
 " copy on clipboard fullpath and filename
 nnoremap <Leader>yp :let @+ = expand("%")<cr>
+" copy on line on clipboard  
+nnoremap <Leader>Y "+y<CR>
+let g:netrw_liststyle = 3
 " autoclose-tag
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js, *.tsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.tsx'
 let g:closetag_xhtml_filenames = '*.xhtml,*.tsx'
 let g:closetag_regions =  {
 \ 'typescript.tsx': 'jsxRegion,tsxRegion',

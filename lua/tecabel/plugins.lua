@@ -31,7 +31,11 @@ require("lazy").setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
-  'L3MON4D3/LuaSnip',
+  {
+    'L3MON4D3/LuaSnip',
+    version = '2.0.0',
+    build = "make install_jsregexp"
+  },
   'onsails/lspkind.nvim',
   {
     'nvimdev/lspsaga.nvim',
