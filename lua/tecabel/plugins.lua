@@ -21,8 +21,13 @@ require("lazy").setup({
   'williamboman/nvim-lsp-installer',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  'jose-elias-alvarez/null-ls.nvim',
   'jose-elias-alvarez/typescript.nvim',
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require('typescript.extensions.null-ls.code-actions')
+    end
+  },
   'MunifTanjim/prettier.nvim',
   'neovim/nvim-lspconfig',
   'hrsh7th/nvim-cmp',

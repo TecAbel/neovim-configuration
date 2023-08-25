@@ -4,7 +4,9 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-keymap.set('n', '<Leader>o', ' <cmd>:TypescriptOrganizeImports <CR> <bar> <cmd>:TypescriptRemoveUnused <CR>', opts)
+
+keymap.set('n', '<Leader>o', '<CR><cmd>:lua require("typescript").actions.removeUnused() <cr> && <cmd>:lua require("typescript").actions.organizeImports()<cr><CR>', opts)
+
 keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)
 keymap.set('n', '<Leader>w', ' <cmd>w<CR>', opts)
 keymap.set('n', '<Leader>q', ' <cmd>q<CR>', opts)
@@ -72,4 +74,7 @@ let g:closetag_regions =  {
 \ 'typescript.tsx': 'jsxRegion,tsxRegion',
 \ 'javascript.jsx': 'jsxRegion',
 \ }
+" nnoremap <leader>o <CR>require<cr> :TypescriptOrganizeImports<cr> <CR>
+
 ]])
+
