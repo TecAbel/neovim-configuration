@@ -2,6 +2,8 @@
 set -g default-terminal "tmux-256color"
 # set -g default-terminal "xterm-256color"
 set -ga terminal-overrides ",*256col*:Tc"
+set -as terminal-overrides ",alacritty*:Tc"
+set -as terminal-overrides ",iterm*:Tc"
 # set -ga terminal-overrides ",xter# action key
 
 # key action
