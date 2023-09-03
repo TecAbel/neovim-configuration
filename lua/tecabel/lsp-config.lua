@@ -77,9 +77,9 @@ cmp.setup {
   -- view = {
   --   entries = "custom"
   -- },
-  -- performance = {
-  --   trigger_debounce_time = 500
-  -- },
+  performance = {
+    trigger_debounce_time = 500
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -182,12 +182,12 @@ lspconfig.prismals.setup {}
     end,
 }) ]]
 require("typescript").setup({
-  disable_commands = false,   -- prevent the plugin from creating Vim commands
-  debug = false,              -- enable debug logging for commands
+  disable_commands = false, -- prevent the plugin from creating Vim commands
+  debug = false,            -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = true,          -- fall back to standard LSP definition on failure
+    fallback = true,        -- fall back to standard LSP definition on failure
   },
-  server = {                  -- pass options to lspconfig's setup method
+  server = {                -- pass options to lspconfig's setup method
     on_attach = function(client)
       client.resolved_capabilities.document_formatting = false
     end,

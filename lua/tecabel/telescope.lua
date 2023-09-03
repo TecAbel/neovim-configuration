@@ -9,10 +9,11 @@ local actions = require 'telescope.actions'
 -- IMPORTANT!: this is only a showcase of how you can set default options!
 telescope.setup {
   defaults = {
+    theme = "ivy",
+    layout_strategy = "horizontal",
     layout_config = {
-      vertical = { width = 0.5 }
+      width = 0.7
     },
-    -- preview_cutoff = 1,
     -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     file_ignore_patterns = { "node_modules", ".git" },
     mappings = {
@@ -23,18 +24,21 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      theme = "dropdown"
+      hidden = true
     },
     live_grep = {
-      theme = "dropdown"
     },
     diagnostics = {
-      theme = "dropdown"
     },
   },
   extensions = {
     file_browser = {
-      theme = "dropdown",
+      hidden = true,
+      -- theme = "dropdown",
+      --[[ theme = "ivy",
+      layout_config = {
+        width = 0.7
+      }, ]]
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
       -- mappings = {

@@ -26,6 +26,7 @@ vim.opt.formatoptions:append { 'r' }
 
 vim.cmd([[
 set nohlsearch
+set cursorline
 ]])
 vim.cmd([[
 

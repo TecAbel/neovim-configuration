@@ -5,7 +5,9 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 
-keymap.set('n', '<Leader>o', '<CR><cmd>:lua require("typescript").actions.removeUnused() <cr> && <cmd>:lua require("typescript").actions.organizeImports()<cr><CR>', opts)
+keymap.set('n', '<Leader>o',
+  '<CR><cmd>:lua require("typescript").actions.removeUnused() <cr> && <cmd>:lua require("typescript").actions.organizeImports()<cr><CR>',
+  opts)
 
 keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)
 keymap.set('n', '<Leader>w', ' <cmd>w<CR>', opts)
@@ -28,7 +30,8 @@ keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
 keymap.set('n', '<leader>di', '<cmd>Telescope diagnostics initial_mode=normal prompt_prefix=🔍<cr>', opts)
 keymap.set('n', '<leader>:', '<cmd>Telescope commands prompt_prefix=🔍 initial_mode=normal<cr> ', opts)
-keymap.set('n', '<leader>n', '<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal prompt_prefix=🔍<cr>', opts)
+keymap.set('n', '<leader>n',
+  '<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal prompt_prefix=🔍<cr>', opts)
 keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
 keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
 keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
@@ -64,7 +67,7 @@ nnoremap ;da :%bd <bar> e#<cr>
 nnoremap <Leader>yf :let @+ = expand("%:t")<cr>
 " copy on clipboard fullpath and filename
 nnoremap <Leader>yp :let @+ = expand("%")<cr>
-" copy on line on clipboard  
+" copy on line on clipboard
 nnoremap <Leader>Y "+y<CR>
 let g:netrw_liststyle = 3
 " autoclose-tag
@@ -75,6 +78,7 @@ let g:closetag_regions =  {
 \ 'javascript.jsx': 'jsxRegion',
 \ }
 " nnoremap <leader>o <CR>require<cr> :TypescriptOrganizeImports<cr> <CR>
-
+" dart
+let g:dart_html_in_string = v:true
+let g:lsc_auto_map = v:true
 ]])
-
