@@ -1,5 +1,6 @@
-
 # windows save on (.\AppData\Roaming\alacritty\.alacritty.yml)
+
+```shell
 font:
   size: 15
   normal:
@@ -150,6 +151,4 @@ schemes:
       cyan:    '0x4c7a5d'
       white:   '0xe6d5ae'
 
-# Apply the color scheme.
-colors: *gruvbox_material_medium_dark
-
+```
