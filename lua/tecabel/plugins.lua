@@ -70,13 +70,9 @@ require("lazy").setup({
     'numToStr/Comment.nvim', opts = {}
   },
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      -- show_trailing_blankline_indent = false,
-    },
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {}
   },
   { 'neoclide/coc.nvim', branch = "release" },
   'alvan/vim-closetag',
@@ -96,7 +92,7 @@ require("lazy").setup({
   'ap/vim-css-color',
   'tpope/vim-fugitive',
   'ellisonleao/gruvbox.nvim',
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",   name = "catppuccin", priority = 1000 },
   'xiyaowong/nvim-transparent',
   {
     'nvim-treesitter/nvim-treesitter',
