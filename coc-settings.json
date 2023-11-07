@@ -22,12 +22,6 @@
   "diagnostic.enable": false,
   "clangd.semanticHighlighting": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "html",
-    "typescript",
-    "tsx",
-    "typescriptreact",
-    "scss"
+    "markdown"
   ]
 }

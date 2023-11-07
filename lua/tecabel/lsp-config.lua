@@ -16,7 +16,7 @@ local on_attach = function(client, bufnr)
   end
   -- formatting
   -- vim.cmd [[autocmd BufWritePre *.ts,*.js,*.json,*tsx,*.jsx,*.html,*.css lua vim.lsp.buf.format() ]]
-  vim.cmd [[autocmd BufWritePre *.cs, *.lua lua vim.lsp.buf.format() ]]
+  vim.cmd [[autocmd BufWritePre *.* lua vim.lsp.buf.format() ]]
   -- base keymaps
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -189,9 +189,8 @@ require("typescript").setup({
   },
   server = {                -- pass options to lspconfig's setup method
     on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_formatting = true
     end,
-    capabilities = capabilities
   },
 })
 vim.cmd([[
