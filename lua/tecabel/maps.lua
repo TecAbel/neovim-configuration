@@ -27,7 +27,6 @@ keymap.set({ "n" }, "K", "<cmd>Lspsaga hover_doc<CR>")
 keymap.set("n", "rn", "<cmd>Lspsaga rename ++project<CR>")
 keymap.set('n', 'ee', '<cmd>Startify <cr>', opts)
 keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
 keymap.set('n', '<leader>di', '<cmd>Telescope diagnostics initial_mode=normal prompt_prefix=🔍<cr>', opts)
 keymap.set('n', '<leader>:', '<cmd>Telescope commands prompt_prefix=🔍 initial_mode=normal<cr> ', opts)
 keymap.set('n', '<leader>n',

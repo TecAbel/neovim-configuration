@@ -17,7 +17,7 @@ null_ls.setup({
         buffer = bufnr,
         group = group,
         callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr, async = async })
+          vim.lsp.buf.format()
         end,
         desc = "[lsp] format on save",
       })

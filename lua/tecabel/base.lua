@@ -22,7 +22,6 @@ vim.opt.tabstop = 2
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
 -- Add asterisks in block comments
-vim.opt.formatoptions:append { 'r' }
 
 vim.cmd([[
 set nohlsearch

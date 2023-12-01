@@ -34,7 +34,6 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 
@@ -183,7 +182,7 @@ lspconfig.prismals.setup {}
     end,
 }) ]]
 require("typescript").setup({
-  disable_commands = false, -- prevent the plugin from creating Vim commands
+  --[[ disable_commands = false, -- prevent the plugin from creating Vim commands
   debug = false,            -- enable debug logging for commands
   go_to_source_definition = {
     fallback = true,        -- fall back to standard LSP definition on failure
@@ -192,7 +191,7 @@ require("typescript").setup({
     on_attach = function(client)
       client.resolved_capabilities.document_formatting = true
     end,
-  },
+  }, ]]
 })
 vim.cmd([[
 autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
