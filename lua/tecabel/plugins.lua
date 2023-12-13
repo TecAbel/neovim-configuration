@@ -22,13 +22,6 @@ require("lazy").setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'jose-elias-alvarez/typescript.nvim',
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require('typescript.extensions.null-ls.code-actions')
-    end
-  },
-  'MunifTanjim/prettier.nvim',
   'neovim/nvim-lspconfig',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
@@ -48,7 +41,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
   'rafamadriz/friendly-snippets',
-  -- 'dense-analysis/ale',
+  'dense-analysis/ale',
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',
