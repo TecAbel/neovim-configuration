@@ -46,13 +46,20 @@ require("lazy").setup({
     end
   },
   -- for lsp
-  'williamboman/nvim-lsp-installer',
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
-  'jose-elias-alvarez/typescript.nvim',
   {
-    'neovim/nvim-lspconfig',
+    'hrsh7th/nvim-cmp',
     dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'williamboman/nvim-lsp-installer',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'jose-elias-alvarez/typescript.nvim',
+      'neovim/nvim-lspconfig',
+      'stevearc/conform.nvim',
       'folke/neodev.nvim',
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       {
@@ -62,18 +69,9 @@ require("lazy").setup({
       }
     },
   },
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'saadparwaiz1/cmp_luasnip',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
   -- lazy.nvim
   {
     "folke/noice.nvim",
-    opts = {
-      -- add any options here
-    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
@@ -95,7 +93,6 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" }
   },
   'rafamadriz/friendly-snippets',
-  'dense-analysis/ale',
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',

@@ -3,11 +3,12 @@ bufferline.setup({
   options = {
     -- mode = "buffers",
     mode = "tabs",
-    -- separator_style = 'padded_slant',
-    separator_style = 'slant',
+    separator_style = 'thick',
+    -- separator_style = "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+    -- separator_style = 'slant',
     -- always_show_bufferline = false,
     show_tab_indicators = true,
-    show_buffer_close_icons = false,
+    show_buffer_close_icons = true,
     -- show_close_icon = false,
     color_icons = true,
     -- indicator = {
@@ -15,13 +16,13 @@ bufferline.setup({
     -- }
   },
   highlights = {
-    separator = {
+    --[[ separator = {
       fg = '#1f211f',
       -- bg = '#1f211f',
     },
     separator_selected = {
       fg = '#1f211f',
-    },
+    }, ]]
     --[[background = {
       fg = '#002b36',
       bg = '#1f211f'
