@@ -7,17 +7,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- Mappings.
 local bufopts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+  -- Create a command `:Format` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+    vim.lsp.buf.format()
+  end, { desc = "Format current buffer with LSP" })
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-  -- formatting
-  -- vim.cmd [[autocmd BufWritePre *.ts,*.js,*.json,*tsx,*.jsx,*.html,*.css lua vim.lsp.buf.format() ]]
-  -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format() ]]
 
+  vim.keymap.set('n', '<space>ff', '<cmd>Format<cr>')
   -- base keymaps
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -30,8 +26,6 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 end
@@ -46,49 +40,39 @@ local has_words_before = function()
 end
 
 local kind_icons = {
-  Text = "",
-  Method = "",
+  Text = "",
+  Method = "m",
   Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
   Interface = "",
   Module = "",
-  Property = "ﰠ",
+  Property = "",
   Unit = "",
   Value = "",
   Enum = "",
   Keyword = "",
-  Snippet = "",
+  Snippet = "",
   Color = "",
   File = "",
   Reference = "",
   Folder = "",
   EnumMember = "",
-  Constant = "",
+  Constant = "",
   Struct = "",
   Event = "",
   Operator = "",
-  TypeParameter = ""
+  TypeParameter = "",
 }
 
 cmp.setup {
-  -- view = {
-  --   entries = "custom"
-  -- },
-  performance = {
-    trigger_debounce_time = 500
-  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  -- window = {
-  -- completion = cmp.config.window.bordered(),
-  -- documentation = cmp.config.window.bordered(),
-  -- },
   mapping = {
     ['<C-k>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -121,20 +105,22 @@ cmp.setup {
     { name = 'luasnip' },
   }, {
     { name = 'buffer' },
+    { name = "path" },
   }),
-  -- formatting = {
-  --   format = lspkind.cmp_format({
-  --     with_text = false,
-  --     mode = 'symbol_text', -- show only symbol annotations symbol_text
-  --     maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-  --     -- The function below will be called before any actual modifications from lspkind
-  --     -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-  --     before = function(entry, vim_item)
-  --       vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-  --       return vim_item
-  --     end
-  --   })
-  -- }
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  }
 }
 
 
@@ -144,7 +130,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
   cssls = {},
-  -- tsserver = {},
+  tsserver = {},
   tailwindcss = {},
   pyright = {},
   angularls = {},
@@ -168,20 +154,45 @@ mason_lspconfig.setup_handlers {
 }
 
 -- only with nvim-lsp-installer
+require("lspconfig")["lua_ls"].setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
+})
 lspconfig.csharp_ls.setup {
+  capabilities = capabilities,
   on_attach = on_attach
 }
 lspconfig.dartls.setup {
+  capabilities = capabilities,
   on_attach = on_attach
 }
-lspconfig.prismals.setup {}
---[[ lspconfig.tsserver.setup({
-    capabilities = capabilities,
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-    end,
-}) ]]
+lspconfig.prismals.setup {
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+lspconfig.tsserver.setup({
+  capabilities = capabilities,
+  on_attach = on_attach
+})
 require('neodev').setup()
+
+
 require("typescript").setup({
   --[[ disable_commands = false, -- prevent the plugin from creating Vim commands
   debug = false,            -- enable debug logging for commands

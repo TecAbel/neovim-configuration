@@ -13,19 +13,54 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Use a protected call so we don't error out on first use
+local ok, lazy = pcall(require, "lazy")
+if not ok then
+  return
+end
+
+
+vim.opt.termguicolors = true
+
 
 require("lazy").setup({
-  -- performance
-  'lewis6991/impatient.nvim',
+  {
+    "folke/which-key.nvim",
+    config = function()
+      local wk = require("which-key")
+      wk.setup()
+      wk.register(
+        {
+          ["<leader>"] = {
+            f = { name = "File" },
+            d = { name = "Delete/Close" },
+            q = { name = "Quit" },
+            s = { name = "Search" },
+            l = { name = "LSP" },
+            u = { name = "UI" },
+            b = { name = "Debugging" },
+            g = { name = "Git" },
+          }
+        }
+      )
+    end
+  },
   -- for lsp
   'williamboman/nvim-lsp-installer',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'jose-elias-alvarez/typescript.nvim',
-  { 'neovim/nvim-lspconfig',
-  dependencies = {
-      'folke/neodev.nvim'
-    }
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'folke/neodev.nvim',
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+      }
+    },
   },
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
@@ -33,6 +68,21 @@ require("lazy").setup({
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
+  -- lazy.nvim
+  {
+    "folke/noice.nvim",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
   {
     'L3MON4D3/LuaSnip',
     version = '2.0.0',
@@ -89,7 +139,7 @@ require("lazy").setup({
   'ap/vim-css-color',
   'tpope/vim-fugitive',
   'ellisonleao/gruvbox.nvim',
-  { "catppuccin/nvim",   name = "catppuccin", priority = 1000 },
+  { "catppuccin/nvim",   name = "catppuccin" },
   'xiyaowong/nvim-transparent',
   {
     'nvim-treesitter/nvim-treesitter',
@@ -106,7 +156,24 @@ require("lazy").setup({
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        signs = {
+          add = { text = "▎" },
+          change = { text = "▎" },
+          delete = { text = "" },
+          topdelete = { text = "" },
+          changedelete = { text = "▎" },
+          untracked = { text = "▎" },
+        },
+        numhl = true,
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+          delay = 1000,
+          ignore_whitespace = false,
+          virt_text_priority = 100,
+        }
+      })
     end
   },
   -- lines

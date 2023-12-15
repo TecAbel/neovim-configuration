@@ -11,11 +11,10 @@ keymap.set('n', '<Leader>o',
 
 keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)
 keymap.set('n', '<Leader>w', ' <cmd>w<CR>', opts)
+keymap.set('n', '<Leader>W', ' <cmd>wa<CR>', opts)
 keymap.set('n', '<Leader>q', ' <cmd>q<CR>', opts)
--- keymap.set('n', '<Leader>,', ' $a,<Esc>', opts)
--- keymap.set('n', '<Leader>;', ' $a;<Esc>', opts)
+keymap.set('n', '<Leader>Q', ' <cmd>qa!<CR>', opts)
 keymap.set('n', 's', ' <Plug>(easymotion-s2)', opts)
--- keymap.set('n', ';da', ' <cmd>bufdo bd<cr>', opts)
 keymap.set('n', '<leader>rl', '<cmd>edit!<cr>')
 keymap.set('n', ';dd', ' <cmd>bd <cr>', opts)
 keymap.set('n', 'gd', ' <cmd>Lspsaga goto_definition<cr> ')
@@ -34,7 +33,6 @@ keymap.set('n', '<leader>n',
 keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
 keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
 keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
--- keymap.set('n', '<leader>ll', '<cmd>:Explore <cr>', opts)
 keymap.set('n', '<leader>ll', '<cmd>CocCommand explorer<cr>', opts)
 keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>', opts)
 -- fire database connections
@@ -42,7 +40,6 @@ keymap.set('n', '<leader>db', '<cmd>DBUI<cr>', opts)
 
 
 -- Telescope
--- local builtin = require('telescope.builtin')
 keymap.set('n', '<leader>gf', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍 <cr>',
   opts)
 keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep prompt_prefix=🔍 <cr>', opts)
