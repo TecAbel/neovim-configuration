@@ -20,5 +20,5 @@
   "suggest.autoTrigger": "none",
   "suggest.timeout": 1,
   "diagnostic.enable": false,
-  "clangd.semanticHighlighting": true,
+  "clangd.semanticHighlighting": true
 }
