@@ -22,7 +22,11 @@ require("lazy").setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'jose-elias-alvarez/typescript.nvim',
-  'neovim/nvim-lspconfig',
+  { 'neovim/nvim-lspconfig',
+  dependencies = {
+      'folke/neodev.nvim'
+    }
+  },
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',

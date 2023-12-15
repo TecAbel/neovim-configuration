@@ -1,6 +1,6 @@
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'css', 'lua', 'python', 'tsx', 'javascript', 'prisma', 'typescript',
+  ensure_installed = { 'css', 'lua', 'tsx', 'javascript', 'prisma', 'typescript',
     'vim',
     'markdown_inline', 'markdown' },
 
