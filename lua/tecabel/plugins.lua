@@ -60,7 +60,19 @@ require("lazy").setup({
       'jose-elias-alvarez/typescript.nvim',
       'neovim/nvim-lspconfig',
       'stevearc/conform.nvim',
+      'rafamadriz/friendly-snippets',
+      'onsails/lspkind.nvim',
       'folke/neodev.nvim',
+      {
+        'L3MON4D3/LuaSnip',
+        version = '2.0.0',
+        build = "make install_jsregexp"
+      },
+      {
+        'nvimdev/lspsaga.nvim',
+        event = "BufRead",
+        dependencies = { "nvim-tree/nvim-web-devicons" }
+      },
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       {
         "j-hui/fidget.nvim",
@@ -69,30 +81,14 @@ require("lazy").setup({
       }
     },
   },
-  -- lazy.nvim
+  -- UI
   {
     "folke/noice.nvim",
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
     }
   },
-  {
-    'L3MON4D3/LuaSnip',
-    version = '2.0.0',
-    build = "make install_jsregexp"
-  },
-  'onsails/lspkind.nvim',
-  {
-    'nvimdev/lspsaga.nvim',
-    event = "BufRead",
-    dependencies = { "nvim-tree/nvim-web-devicons" }
-  },
-  'rafamadriz/friendly-snippets',
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -115,8 +111,61 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "startify",
+          "neo-tree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+      },
+    },
     main = "ibl",
-    opts = {}
+    dependencies = {
+      {
+        "echasnovski/mini.indentscope",
+        version = false, -- wait till new 0.7.0 release to put it back on semver
+        opts = {
+          -- symbol = "▏",
+          symbol = "│",
+          options = { try_as_border = true },
+        },
+        init = function()
+          vim.api.nvim_create_autocmd("FileType", {
+            pattern = {
+              "help",
+              "alpha",
+              "dashboard",
+              "neo-tree",
+              "Trouble",
+              "trouble",
+              "lazy",
+              "mason",
+              "notify",
+              "toggleterm",
+              "lazyterm",
+            },
+            callback = function()
+              vim.b.miniindentscope_disable = true
+            end,
+          })
+        end,
+      }
+    },
   },
   { 'neoclide/coc.nvim', branch = "release" },
   'alvan/vim-closetag',
@@ -134,7 +183,6 @@ require("lazy").setup({
   'mhinz/vim-startify',
   -- colors
   'ap/vim-css-color',
-  'tpope/vim-fugitive',
   'ellisonleao/gruvbox.nvim',
   { "catppuccin/nvim",   name = "catppuccin" },
   'xiyaowong/nvim-transparent',
@@ -147,9 +195,8 @@ require("lazy").setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end
   },
-  -- 'nvim-treesitter/nvim-treesitter-context',
-  -- 'kyazdani42/nvim-web-devicons',
   -- git
+  'tpope/vim-fugitive',
   {
     'lewis6991/gitsigns.nvim',
     config = function()

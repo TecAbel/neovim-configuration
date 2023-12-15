@@ -33,7 +33,7 @@ keymap.set('n', '<leader>n',
 keymap.set('n', '<Leader>t', '<cmd>tabnew<cr>', opts)
 keymap.set('n', '<Leader>s', '<cmd>vsplit<cr>', opts)
 keymap.set('n', '<Leader>i', '<cmd>split<cr>', opts)
-keymap.set('n', '<leader>ll', '<cmd>CocCommand explorer<cr>', opts)
+keymap.set('n', '<leader>ll', '<cmd>CocCommand explorer --position right<cr>', opts)
 keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>', opts)
 -- fire database connections
 keymap.set('n', '<leader>db', '<cmd>DBUI<cr>', opts)
