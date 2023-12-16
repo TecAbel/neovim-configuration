@@ -46,49 +46,11 @@ require("lazy").setup({
     end
   },
   -- for lsp
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'williamboman/nvim-lsp-installer',
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/typescript.nvim',
-      'neovim/nvim-lspconfig',
-      'stevearc/conform.nvim',
-      'rafamadriz/friendly-snippets',
-      'onsails/lspkind.nvim',
-      'folke/neodev.nvim',
-      {
-        'L3MON4D3/LuaSnip',
-        version = '2.0.0',
-        build = "make install_jsregexp"
-      },
-      {
-        'nvimdev/lspsaga.nvim',
-        event = "BufRead",
-        dependencies = { "nvim-tree/nvim-web-devicons" }
-      },
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      {
-        "j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
-      }
-    },
-  },
+  require('tecabel.plugins.lsp'),
   -- UI
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
-  },
+  require('tecabel.plugins.code'),
+  require('tecabel.plugins.git'),
+  require('tecabel.plugins.ui'),
   -- lsp database
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -106,9 +68,6 @@ require("lazy").setup({
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-file-browser.nvim',
   -- utils
-  {
-    'numToStr/Comment.nvim', opts = {}
-  },
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
@@ -167,59 +126,7 @@ require("lazy").setup({
       }
     },
   },
-  { 'neoclide/coc.nvim', branch = "release" },
-  'alvan/vim-closetag',
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup {}
-    end
-  },
-  'easymotion/vim-easymotion',
-  'christoomey/vim-tmux-navigator',
-  'tpope/vim-surround',
-  'mg979/vim-visual-multi',
-  'danilamihailov/beacon.nvim',
-  'mhinz/vim-startify',
-  -- colors
-  'ap/vim-css-color',
-  'ellisonleao/gruvbox.nvim',
-  { "catppuccin/nvim",   name = "catppuccin" },
-  'xiyaowong/nvim-transparent',
-  {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end
-  },
   -- git
-  'tpope/vim-fugitive',
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup({
-        signs = {
-          add = { text = "▎" },
-          change = { text = "▎" },
-          delete = { text = "" },
-          topdelete = { text = "" },
-          changedelete = { text = "▎" },
-          untracked = { text = "▎" },
-        },
-        numhl = true,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
-          delay = 1000,
-          ignore_whitespace = false,
-          virt_text_priority = 100,
-        }
-      })
-    end
-  },
   -- lines
   'nvim-lualine/lualine.nvim',
   'akinsho/bufferline.nvim',
