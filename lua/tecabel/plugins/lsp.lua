@@ -35,7 +35,7 @@ return {
     },
   },
   {
-    "mfussenegger/nvim-lint",
+    "dense-analysis/ale",
     event = "VeryLazy",
   },
 }

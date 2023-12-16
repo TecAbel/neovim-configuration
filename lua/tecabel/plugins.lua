@@ -24,27 +24,6 @@ vim.opt.termguicolors = true
 
 
 require("lazy").setup({
-  {
-    "folke/which-key.nvim",
-    config = function()
-      local wk = require("which-key")
-      wk.setup()
-      wk.register(
-        {
-          ["<leader>"] = {
-            f = { name = "File" },
-            d = { name = "Delete/Close" },
-            q = { name = "Quit" },
-            s = { name = "Search" },
-            l = { name = "LSP" },
-            u = { name = "UI" },
-            b = { name = "Debugging" },
-            g = { name = "Git" },
-          }
-        }
-      )
-    end
-  },
   -- for lsp
   require('tecabel.plugins.lsp'),
   -- UI
@@ -63,73 +42,6 @@ require("lazy").setup({
   -- flutter
   'dart-lang/dart-vim-plugin',
   'thosakwe/vim-flutter',
-  -- telescope
-  'nvim-lua/plenary.nvim',
-  'nvim-telescope/telescope.nvim',
-  'nvim-telescope/telescope-file-browser.nvim',
-  -- utils
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      indent = {
-        char = "│",
-        tab_char = "│",
-      },
-      scope = { enabled = false },
-      exclude = {
-        filetypes = {
-          "help",
-          "alpha",
-          "dashboard",
-          "startify",
-          "neo-tree",
-          "Trouble",
-          "trouble",
-          "lazy",
-          "mason",
-          "notify",
-          "toggleterm",
-          "lazyterm",
-        },
-      },
-    },
-    main = "ibl",
-    dependencies = {
-      {
-        "echasnovski/mini.indentscope",
-        version = false, -- wait till new 0.7.0 release to put it back on semver
-        opts = {
-          -- symbol = "▏",
-          symbol = "│",
-          options = { try_as_border = true },
-        },
-        init = function()
-          vim.api.nvim_create_autocmd("FileType", {
-            pattern = {
-              "help",
-              "alpha",
-              "dashboard",
-              "neo-tree",
-              "Trouble",
-              "trouble",
-              "lazy",
-              "mason",
-              "notify",
-              "toggleterm",
-              "lazyterm",
-            },
-            callback = function()
-              vim.b.miniindentscope_disable = true
-            end,
-          })
-        end,
-      }
-    },
-  },
-  -- git
-  -- lines
-  'nvim-lualine/lualine.nvim',
-  'akinsho/bufferline.nvim',
 }, {
   root = vim.fn.stdpath("data") .. "/lazy",                 -- directory where plugins will be installed
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
