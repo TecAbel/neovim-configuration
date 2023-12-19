@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 
 
 keymap.set('n', '<Leader>o',
-  '<CR><cmd>:lua require("typescript").actions.removeUnused() <cr> && <cmd>:lua require("typescript").actions.organizeImports()<cr><CR>',
+  '<cmd>TypescriptOrganizeImports<cr> <cmd>TypescriptRemoveUnused<cr>',
   opts)
 
 keymap.set('n', '<Leader>p', ' <cmd>Prettier <cr>', opts)

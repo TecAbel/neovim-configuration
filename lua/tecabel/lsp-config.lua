@@ -33,7 +33,6 @@ end
 
 -- cmp vim
 local cmp = require 'cmp'
-local lspkind = require 'lspkind'
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -130,7 +129,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local mason_lspconfig = require("mason-lspconfig")
 local servers = {
   cssls = {},
-  tsserver = {},
   tailwindcss = {},
   pyright = {},
   angularls = {},
@@ -186,25 +184,21 @@ lspconfig.prismals.setup {
   capabilities = capabilities,
   on_attach = on_attach
 }
-lspconfig.tsserver.setup({
-  capabilities = capabilities,
-  on_attach = on_attach
-})
-require('neodev').setup()
-
 
 require("typescript").setup({
-  --[[ disable_commands = false, -- prevent the plugin from creating Vim commands
+  disable_commands = false, -- prevent the plugin from creating Vim commands
   debug = false,            -- enable debug logging for commands
   go_to_source_definition = {
     fallback = true,        -- fall back to standard LSP definition on failure
   },
   server = {                -- pass options to lspconfig's setup method
-    on_attach = function(client)
-      client.resolved_capabilities.document_formatting = true
-    end,
-  }, ]]
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
 })
+
+require('neodev').setup()
+
 vim.cmd([[
 autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 ]])
