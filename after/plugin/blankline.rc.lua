@@ -7,3 +7,4 @@
   show_current_context = true,
   show_current_context_start = true,
 } ]]
+-- vim.cmd([[let g:indent_guides_enable_on_vim_startup = 1]])

@@ -141,6 +141,62 @@ return {
     end,
   },
   {
+    "folke/which-key.nvim",
+    config = function()
+      local wk = require("which-key")
+      wk.setup()
+      wk.register(
+        {
+          ["<leader>"] = {
+            f = { name = "File" },
+            d = { name = "Delete/Close" },
+            q = { name = "Quit" },
+            s = { name = "Search" },
+            l = { name = "LSP" },
+            u = { name = "UI" },
+            b = { name = "Debugging" },
+            g = { name = "Git" },
+          }
+        }
+      )
+    end
+  },
+  'nvim-lualine/lualine.nvim',
+  'akinsho/bufferline.nvim',
+  -- telescope
+  'nvim-lua/plenary.nvim',
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-file-browser.nvim',
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    opts = {
+      -- symbol = "▏",
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
       indent = {
@@ -198,31 +254,4 @@ return {
       }
     },
   },
-  {
-    "folke/which-key.nvim",
-    config = function()
-      local wk = require("which-key")
-      wk.setup()
-      wk.register(
-        {
-          ["<leader>"] = {
-            f = { name = "File" },
-            d = { name = "Delete/Close" },
-            q = { name = "Quit" },
-            s = { name = "Search" },
-            l = { name = "LSP" },
-            u = { name = "UI" },
-            b = { name = "Debugging" },
-            g = { name = "Git" },
-          }
-        }
-      )
-    end
-  },
-  'nvim-lualine/lualine.nvim',
-  'akinsho/bufferline.nvim',
-  -- telescope
-  'nvim-lua/plenary.nvim',
-  'nvim-telescope/telescope.nvim',
-  'nvim-telescope/telescope-file-browser.nvim',
 }
