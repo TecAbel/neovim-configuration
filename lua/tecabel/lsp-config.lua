@@ -1,6 +1,7 @@
 require('mason').setup {}
 local luasnip = require("luasnip")
 local lspconfig = require('lspconfig')
+local conform = require('conform')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -9,7 +10,8 @@ local bufopts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-    vim.lsp.buf.format()
+    -- vim.lsp.buf.format()
+    conform.format()
   end, { desc = "Format current buffer with LSP" })
 
 
@@ -26,8 +28,8 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
 end
 
 
@@ -39,30 +41,30 @@ local has_words_before = function()
 end
 
 local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
+  Text = "󰉿",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰜢",
+  Variable = "󰀫",
+  Class = "󰠱",
   Interface = "",
   Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
+  Property = "󰜢",
+  Unit = "󰑭",
+  Value = "󰎠",
   Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "󰈇",
+  Folder = "󰉋",
   EnumMember = "",
-  Constant = "",
-  Struct = "",
+  Constant = "󰏿",
+  Struct = "󰙅",
   Event = "",
-  Operator = "",
+  Operator = "󰆕",
   TypeParameter = "",
 }
 
