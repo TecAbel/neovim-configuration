@@ -12,6 +12,7 @@ vim.g.maplocalleader = " "
 keymap.set("n", "<Leader>w", " <cmd>w<CR>", { desc = "Save" })
 keymap.set("n", "<Leader>W", " <cmd>wa<CR>", { desc = "Save all buffers" })
 keymap.set("n", "<Leader>q", " <cmd>q<CR>", { desc = "close" })
+keymap.set("n", "<Leader>qq", " <cmd>q!<CR>", { desc = "close" })
 keymap.set("n", "<Leader>Q", " <cmd>qa!<CR>", { desc = "Close all" })
 
 -- Telescope
