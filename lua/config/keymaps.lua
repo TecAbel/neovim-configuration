@@ -6,15 +6,20 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- save and quit
-keymap.set("n", "<Leader>w", " <cmd>w<CR>", { desc = "Save" })
-keymap.set("n", "<Leader>W", " <cmd>wa<CR>", { desc = "Save all buffers" })
-keymap.set("n", "<Leader>q", " <cmd>q<CR>", { desc = "close" })
-keymap.set("n", "<Leader>qq", " <cmd>q!<CR>", { desc = "close" })
-keymap.set("n", "<Leader>Q", " <cmd>qa!<CR>", { desc = "Close all" })
+keymap.set("n", "<Leader>w", "<cmd>w<CR>", { desc = "Save" })
+keymap.set("n", "<Leader>W", "<cmd>wa<CR>", { desc = "Save all buffers" })
+keymap.set("n", "<Leader>q", "<cmd>:q <CR>", { desc = "close" })
+keymap.set("n", "<Leader>qq", "<cmd>:q! <CR>", { desc = "close" })
+keymap.set("n", "<Leader>Q", "<cmd>:qa! <CR>", { desc = "Close all" })
 
+-- autocomplete
+local function callComplete()
+  local cmp = require("cmp")
+  cmp.complete()
+end
+keymap.set("i", "<C-n>", callComplete, { desc = "complete opts" })
 -- Telescope
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags prompt_prefix=🔍 <cr>", opts)
 keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits prompt_prefix=🔍 <cr>", opts)
