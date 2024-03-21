@@ -101,7 +101,8 @@ return {
         "typescript",
         "vim",
         "yaml",
-        "angular"
+        "angular",
+        "dart"
       },
     },
   },
@@ -110,12 +111,16 @@ return {
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
-
+{
+      "rafamadriz/friendly-snippets"
+    },
 
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
+    version = "v2.2.0",
+    build = "make install_jsregexp",
     keys = function()
       return {}
     end,
@@ -134,7 +139,15 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
+      -- snippets from friendly snippets
+      require('luasnip.loaders.from_vscode').lazy_load()
+
       local luasnip = require("luasnip")
+
+      luasnip.filetype_extend("dart", {"flutter"})
+      luasnip.filetype_extend("typescript", {"tsdoc", "javascript"})
+      luasnip.filetype_extend("javascript", {"jsdoc"})
+      luasnip.filetype_extend("html", {"angular.html"})
       local cmp = require("cmp")
 
       opts.snippet = {
@@ -142,6 +155,11 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       }
+
+      -- opts.sources = cmp.config.sources({
+      --   {name = "nvim_lsp"},
+      --   {name = "luasnip"},
+      -- })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-n>"] = cmp.mapping(function ()
