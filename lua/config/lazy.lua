@@ -13,7 +13,8 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "catppuccin-mocha",
+        -- colorscheme = "catppuccin-mocha",
+        colorscheme = "gruvbox",
       },
     },
     -- import any extras modules here
