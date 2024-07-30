@@ -53,4 +53,15 @@ return {
       opts.config.header = vim.split(logo, "\n")
     end,
   },
+  -- file explorer
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    config = function()
+      require("neo-tree").setup({
+        window = {
+          position = "right",
+        },
+      })
+    end,
+  },
 }
