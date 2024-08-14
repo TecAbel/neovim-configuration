@@ -228,8 +228,8 @@ text = "#1E1E2E"
 cursor = "#B4BEFE"
 text = "#1E1E2E"
 
-[env]
-TERM = "xterm-256color"
+#[env]
+#TERM = "xterm-256color"
 
 [font]
 size = 18
