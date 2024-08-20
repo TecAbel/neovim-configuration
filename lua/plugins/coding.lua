@@ -52,7 +52,6 @@ return {
         tailwindcss = {},
         cssls = {},
         eslint = {},
-        csharp_ls = {}
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -149,6 +148,11 @@ return {
       luasnip.filetype_extend("javascript", {"jsdoc"})
       luasnip.filetype_extend("html", {"angular.html"})
       local cmp = require("cmp")
+
+      opts.window = {
+        completion = cmp.config.window.bordered(opts),
+        documentation = cmp.config.window.bordered(opts)
+      }
 
       opts.snippet = {
         expand = function(args)
