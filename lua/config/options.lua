@@ -4,6 +4,10 @@
 
 -- Undercurl
 
-vim.cmd([[let &t_Cs = "\e[4:3m]"]])
-vim.cmd([[let &t_Ce = "\e[4:3m]"]])
+-- for alacritty
+-- vim.cmd([[let &t_Cs = "\e[4:3m]"]])
+-- vim.cmd([[let &t_Ce = "\e[4:3m]"]])
+-- for wezterm
+vim.cmd([[let &t_Cs = "\e[60m"]])
+vim.cmd([[let &t_Ce = "\e[24m"]])
 vim.opt.termguicolors = true
