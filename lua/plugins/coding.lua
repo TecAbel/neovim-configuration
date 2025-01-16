@@ -111,9 +111,9 @@ return {
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
-{
+  {
       "rafamadriz/friendly-snippets"
-    },
+   },
 
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
@@ -127,73 +127,19 @@ return {
   },
   -- then: setup supertab in cmp
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      -- snippets from friendly snippets
-      require('luasnip.loaders.from_vscode').lazy_load()
-
-      local luasnip = require("luasnip")
-
-      luasnip.filetype_extend("dart", {"flutter"})
-      luasnip.filetype_extend("typescript", {"tsdoc", "javascript"})
-      luasnip.filetype_extend("javascript", {"jsdoc"})
-      luasnip.filetype_extend("html", {"angular.html"})
-      local cmp = require("cmp")
-
-      opts.window = {
-        completion = cmp.config.window.bordered(opts),
-        documentation = cmp.config.window.bordered(opts)
+    'saghen/blink.cmp',
+    opts = {
+      keymap = {
+        ['<C-n>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'hide', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        -- ['<Up>'] = { 'select_prev', 'fallback' },
+        -- ['<Down>'] = { 'select_next', 'fallback' },
+        -- ['<C-p>'] = { 'select_prev', 'fallback' },
+        -- ['<C-n>'] = { 'select_next', 'fallback' },
       }
-
-      opts.snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      }
-
-      -- opts.sources = cmp.config.sources({
-      --   {name = "nvim_lsp"},
-      --   {name = "luasnip"},
-      -- })
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-n>"] = cmp.mapping(function ()
-          cmp.complete()
-        end, { "i", "s" }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item({ select = true })
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      })
-    end,
+    }
   },
   -- dap
   {
