@@ -40,6 +40,7 @@ return {
           end,
         },
         html = {},
+        dartls = {},
         lua_ls = {
 					-- enabled = false,
 					single_file_support = true,

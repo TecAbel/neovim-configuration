@@ -11,3 +11,4 @@
 vim.cmd([[let &t_Cs = "\e[60m"]])
 vim.cmd([[let &t_Ce = "\e[24m"]])
 vim.opt.termguicolors = true
+vim.g.lazyvim_picker = "telescope"
