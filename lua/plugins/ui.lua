@@ -85,16 +85,17 @@ return {
           if filename == "" then
             filename = "[No Name]"
           end
+          local finalTable = {}
           if vim.bo[props.buf].modified then
-            filename = "[+] " .. filename
+            -- filename = "[+] " .. filename
+            table.insert(finalTable, { " [+] ", guibg = "#cc241d", guifg = "#fbf1c7" })
           end
           local icon = require("nvim-web-devicons").get_icon_color(filename)
-          return {
-            { " ", icon, guibg = "#bdae93", guifg = "#076678", " " },
-            { " " },
-            { filename, " ", guifg = "#1d2021" },
-            guibg = "#a89984",
-          }
+          table.insert(finalTable, { " ", icon, guibg = "#bdae93", guifg = "#076678", " " })
+          table.insert(finalTable, { " " })
+          table.insert(finalTable, { filename, " ", guifg = "#1d2021" })
+          finalTable.guibg = "#a89984"
+          return finalTable
         end,
       })
     end,
