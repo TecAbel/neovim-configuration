@@ -11,19 +11,19 @@
 return {
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-        "angular-language-server",
-        "prisma-language-server",
-        "tailwindcss-language-server",
-        "html-lsp",
-        "css-lsp",
-        "vtsls"
+        -- "stylua",
+        -- "shellcheck",
+        -- "shfmt",
+        -- "flake8",
+        -- "angular-language-server",
+        -- "prisma-language-server",
+        -- "tailwindcss-language-server",
+        -- "html-lsp",
+        -- "css-lsp",
+        -- "vtsls"
       },
     },
   },
@@ -33,11 +33,11 @@ return {
       ---@type lspconfig.options
       servers = {
         cssls = {},
-        tailwindcss = {
-          root_dir = function (...)
-            return require('lspconfig.util').root_pattern(".git")(...)
-          end,
-        },
+        -- tailwindcss = {
+        --   root_dir = function (...)
+        --     return require('lspconfig.util').root_pattern(".git")(...)
+        --   end,
+        -- },
         html = {},
         dartls = {},
         lua_ls = {
@@ -115,12 +115,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function ()
 
-      require('nvim-treesitter.configs').setup({
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false
-        }
-      })
+      -- require('nvim-treesitter.configs').setup({
+      --   highlight = {
+      --     enable = true,
+      --     additional_vim_regex_highlighting = false
+      --   }
+      -- })
     end,
     opts = {
       ensure_installed = {
@@ -141,6 +141,9 @@ return {
         "angular",
         "dart"
       },
+      highigth = {
+        enable = true
+      }
     },
   },
 
@@ -163,17 +166,17 @@ return {
     end,
   },
   -- then: setup supertab in cmp
-  {
-    'saghen/blink.cmp',
-    opts = {
-      keymap = {
-        ['<C-n>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-e>'] = { 'hide', 'fallback' },
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-      }
-    }
-  },
+  -- {
+  --   'saghen/blink.cmp',
+  --   opts = {
+  --     keymap = {
+  --       ['<C-n>'] = { 'show', 'show_documentation', 'hide_documentation' },
+  --       ['<C-e>'] = { 'hide', 'fallback' },
+  --       ['<Tab>'] = { 'select_next', 'fallback' },
+  --       ['<S-Tab>'] = { 'select_prev', 'fallback' },
+  --     }
+  --   }
+  -- },
   -- dap
   {
     "mfussenegger/nvim-dap",
